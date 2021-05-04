@@ -1,15 +1,20 @@
-// import './Square.css';
+import { useState } from 'react';
+import styles from './Square.module.css';
 
 function Square(props) {
 
+    const [clicked, setClicked] = useState(props.clicked);
+
     const handleClick = () => {
-        props.onClick(props.column, props.row)
+        console.log("clicked " + props.id);
+        setClicked(true);
+        props.onClick(props.column, props.row);
     }
 
-  if (props.clicked) {
-    return <td className="grid-square">:o</td>;
+  if (clicked) {
+    return <button className={styles.grid_square}>:o</button>;
   } else {
-    return <td className="grid-square" onClick={handleClick}>?</td>;
+    return <button className={styles.grid_square} onClick={handleClick}>?</button>;
   }
 }
 

@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import Square from './Square/Square';
-// import styles from './Board.module.css';
+import Square from "./Square/Square";
+
+import styles from "./Board.module.css";
 
 const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
+  const [gameInProgress, setGameInProgress] = useState(false);
 
   const buildBoard = (cols, rows /*, ants*/) => {
     let tempArray = Array.from(Array(cols), (col, colIndex) => {
@@ -27,46 +29,46 @@ const Board = () => {
   };
 
   const handleStart = () => {
+    setBoardGrid([]);
     buildBoard(10, 5, 0);
+    setGameInProgress(true);
   };
 
   const handleSquareClick = (colIndex, rowIndex) => {
-      let updateGrid = boardGrid
-      updateGrid[colIndex][rowIndex].clicked = true
-    setBoardGrid(updateGrid)
+    let updateGrid = boardGrid;
+    updateGrid[colIndex][rowIndex].clicked = true;
+    setBoardGrid(updateGrid);
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <h1>Antsweeper Controls go here</h1>
-          </th>
-          <th>
-            <button onClick={handleStart}>Start</button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+    <main>
+      <header className={styles.board_controls}>
+        <h1>Antsweeper Controls go here</h1>
+        {gameInProgress ? (
+          <button onClick={handleStart}>Reset</button>
+        ) : (
+          <button onClick={handleStart}>Start</button>
+        )}
+      </header>
+      <section className={styles.board}>
         {boardGrid
           ? boardGrid.map((row, index) => (
-              <tr key={`row-${index + 1}`}>
+              <div className={styles.board_row} key={`row-${index}`}>
                 {row.map((square) => (
                   <Square
-                    clicked={square.clicked}
-                    id={square.id}
                     key={square.key}
+                    clicked={square.clicked}
+                    id={square.key}
                     column={square.col}
                     row={square.row}
                     onClick={handleSquareClick}
                   />
                 ))}
-              </tr>
+              </div>
             ))
           : null}
-      </tbody>
-    </table>
+      </section>
+    </main>
   );
 };
 
