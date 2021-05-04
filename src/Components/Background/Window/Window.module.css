@@ -1,0 +1,7 @@
+.main_window {
+    margin: 10% auto;
+    box-shadow: inset 1px 1px white;
+    background-color: #C3C7CB;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,26 @@
+.window__inner {
+  height: 100%;
+  width: 100%;
+}
+
+.board__outer {
+  width: fit-content;
+  margin: 2px;
+  border: 3px solid white;
+  border-right-color: #868A8E;
+  border-bottom-color: #868A8E;
+  background-color: #c3c7cb;
+  padding: 5px;
+}
+
+.board__inner {
+    box-shadow: inset 2px 2px #868A8E, inset -2px -2px white;
+    padding: 2px;
+}
+
+/* background-color: #868a8e; */
+.board_row {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}

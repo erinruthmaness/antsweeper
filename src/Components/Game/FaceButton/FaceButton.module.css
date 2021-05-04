@@ -1,0 +1,11 @@
+.control_button {
+    width: 60px;
+    height: 60px;
+    margin: 2px auto;
+    background-color: #C3C7CB;
+    border-color: #868A8E black black #868A8E;
+    box-shadow: inset 1px 1px white, inset -1px -1px #868A8E;
+    padding: 5px;
+    font-size: 36px;
+    cursor: pointer;
+}

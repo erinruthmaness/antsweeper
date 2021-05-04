@@ -1,13 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Window from './Components/Background/Window/Window';
+import Footer from './Components/Background/Footer/Footer';
 
-import Board from './Components/Board';
-
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <Board />
+    <div className={styles.App}>
+      <Window />
+      <Footer />
     </div>
   );
 }

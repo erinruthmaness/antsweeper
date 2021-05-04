@@ -1,9 +1,15 @@
 .grid_square {
     height: 25px;
     width: 25px;
-    margin: 0;
+    margin: .02em;
     padding: 0;
     text-align: center;
     font-weight: bold;
     font-size: 16px;
+}
+
+.clicked_square {
+    background-color: #ffffffe0;
+    box-shadow: none;
+    border: none;
 }
