@@ -34,7 +34,7 @@ const Board = () => {
 
   const onStart = () => {
     setBoardGrid([]);
-    buildBoard(12, 12, 0);
+    buildBoard(8, 8, 0);
     setGameInProgress(true);
     setFace(["0xD83D", "0xDE0A"]); //smiling
   };
