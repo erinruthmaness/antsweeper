@@ -15,7 +15,6 @@ function Square(props) {
       count = count + 1;
       if (count > 0) {
         props.changeFace(["0xD83D", "0xDE0A"]); //smiling
-        console.log(count)
       }
     }, 800);
     if (event.nativeEvent.which === 1) {
@@ -34,6 +33,7 @@ function Square(props) {
       whichClick = "right";
     }
     props.onClick(props.column, props.row, whichClick);
+    count = 0;
   };
 
   return (
