@@ -2,9 +2,9 @@ import { useRef } from "react";
 import styles from "./Square.module.css";
 
 let count = 0;
+let whichClick = "left";
 
 function Square(props) {
-  let whichClick = "left";
   const countRef = useRef();
 
   const handleMouseDown = (event) => {
@@ -15,8 +15,9 @@ function Square(props) {
       count = count + 1;
       if (count > 0) {
         props.changeFace(["0xD83D", "0xDE0A"]); //smiling
+        console.log(count)
       }
-    }, 400);
+    }, 800);
     if (event.nativeEvent.which === 1) {
       //left click
       if (!props.flagged) {
