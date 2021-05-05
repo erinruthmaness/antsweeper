@@ -6,34 +6,46 @@ let whichClick = "left";
 
 function Square(props) {
   const countRef = useRef();
-
-  const handleMouseDown = (event) => {
-    console.log("clicked " + props.id);
-    //start counting how long they hold down the mouse
-    //(for mobile users who can't right-click)
-    countRef.current = setInterval(() => {
-      count = count + 1;
+  const clickHandlers = {
+    handleTouchStart: () => {
+      //start counting how long they hold down the mouse
+      //(for mobile users who can't right-click)
+      countRef.current = setInterval(() => {
+        count = count + 1;
+        console.log(count);
+        if (count > 0) {
+          props.changeFace(["0xD83D", "0xDE0A"]); //smiling
+        }
+      }, 800);
+    },
+    handleTouchEnd: () => {
+      clearInterval(countRef.current);
       if (count > 0) {
-        props.changeFace(["0xD83D", "0xDE0A"]); //smiling
+        whichClick = "right";
+        count = 0;
       }
-    }, 800);
-    if (event.nativeEvent.which === 1) {
-      //left click
-      if (!props.flagged) {
-        props.changeFace(["0xD83D", "0xDE31"]); //yelling
+      props.onClick(props.column, props.row, whichClick);
+      whichClick = "left";
+    },
+    handleMouseDown: (event) => {
+      console.log("clicked " + props.id);
+      if (event.nativeEvent.which === 1) {
+        //left click
+        if (!props.flagged) {
+          props.changeFace(["0xD83D", "0xDE31"]); //yelling
+        }
+      } else {
+        whichClick = "right";
       }
-    } else {
-      whichClick = "right";
-    }
-  };
-
-  const handleMouseUp = (event) => {
-    clearInterval(countRef.current);
-    if (event.nativeEvent.which !== 1 || count > 0) {
-      whichClick = "right";
-    }
-    props.onClick(props.column, props.row, whichClick);
-    count = 0;
+    },
+    handleMouseUp: (event) => {
+      if (event.nativeEvent.which !== 1) {
+        whichClick = "right";
+      }
+      props.onClick(props.column, props.row, whichClick);
+      whichClick = "left";
+      console.log(count);
+    },
   };
 
   return (
@@ -41,8 +53,10 @@ function Square(props) {
       className={`${styles.grid_square} windows95 ${
         props.clicked && styles.clicked_square
       }`}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
+      onMouseDown={props.clicked ? undefined : clickHandlers.handleMouseDown}
+      onMouseUp={props.clicked ? undefined : clickHandlers.handleMouseUp}
+      onTouchStart={props.clicked ? undefined : clickHandlers.handleTouchStart}
+      onTouchEnd={props.clicked ? undefined : clickHandlers.handleTouchEnd}
       onContextMenu={(e) => e.preventDefault()}
     >
       {props.flagged

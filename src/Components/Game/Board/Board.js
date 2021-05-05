@@ -42,6 +42,8 @@ const Board = () => {
   const handleSquareClick = (colIndex, rowIndex, whichClick) => {
     let updateGrid = boardGrid;
     let clickedSquare = updateGrid[colIndex][rowIndex];
+    console.log("handing a " + whichClick + " click for:");
+    console.log(clickedSquare);
     if (whichClick === "left") {
       if (clickedSquare.flagged) {
         return;
