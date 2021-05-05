@@ -15,8 +15,8 @@
 
 .board__inner {
     width: fit-content;
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 209px; /*8 squares*/
+    min-height: 209px;
     box-shadow: inset 2px 2px #868A8E, inset -2px -2px white;
     padding: 2px;
 }

@@ -3,71 +3,43 @@ import { useState } from "react";
 import Controls from "../Controls/Controls";
 import Square from "../Square/Square";
 
+import { faces } from "../utils/icons";
+import { assignAnts } from "../utils/build";
+import { leftClick, rightClick } from "../utils/click";
+
 import styles from "./Board.module.css";
 
 const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
-  const [face, setFace] = useState(["0xD83D", "0xDE34"]); //sleeping
+  const [face, setFace] = useState(faces.sleeping);
 
-  const buildBoard = (cols, rows /*, ants*/) => {
-    let tempArray = Array.from(Array(cols), (col, colIndex) => {
-      return Array.from(Array(rows), (row, rowIndex) =>
-        buildSquare(colIndex, rowIndex)
-      );
-    });
-    console.log(tempArray);
-    setBoardGrid(tempArray);
-  };
-
-  const buildSquare = (col, row) => {
-    return {
-      key: "cell-" + col + "-" + row,
-      col: col,
-      row: row,
-      ant: false,
-      clicked: false,
-      display: "?",
-      flagged: false,
-    };
+  const buildBoard = (cols, rows, ants) => {
+    setBoardGrid(assignAnts(cols, rows, ants));
   };
 
   const onStart = () => {
     setBoardGrid([]);
-    buildBoard(8, 8, 0);
+    buildBoard(8, 8, 10);
     setGameInProgress(true);
-    setFace(["0xD83D", "0xDE0A"]); //smiling
+    setFace(faces.smiling);
   };
 
   const handleSquareClick = (colIndex, rowIndex, whichClick) => {
     let updateGrid = boardGrid;
     let clickedSquare = updateGrid[colIndex][rowIndex];
-    console.log("handing a " + whichClick + " click for:");
+    console.log("handling a " + whichClick + " click for:");
     console.log(clickedSquare);
     if (whichClick === "left") {
-      if (clickedSquare.flagged) {
-        return;
-      } else {
-        clickedSquare.clicked = true;
-        if (clickedSquare.ant) {
-          console.log("oh nooo");
-        } else {
-          clickedSquare.display = ":o";
-
-          setFace(["0xD83D", "0xDE0A"]); //smiling
-        }
-      }
-    } else {
-      if (clickedSquare.flagged) {
-        clickedSquare.display = "?";
-        clickedSquare.flagged = false;
-        setFace(["0xD83D", "0xDE0A"]); //smiling
-      } else {
-        clickedSquare.display = ["0xD83D", "0xDEA9"];
-        clickedSquare.flagged = true;
-        setFace(["0xD83D", "0xDE0A"]); //smiling
-      }
+      let leftResult = leftClick(clickedSquare);
+      clickedSquare = leftResult.square;
+      setFace(leftResult.face);
+    } else if (whichClick === "right") {
+      let rightResult = rightClick(clickedSquare);
+      clickedSquare = rightResult.square;
+      setFace(rightResult.face);
     }
+    updateGrid[colIndex][rowIndex] = clickedSquare;
     setBoardGrid(updateGrid);
   };
 
@@ -82,12 +54,8 @@ const Board = () => {
                   {row.map((square) => (
                     <Square
                       key={square.key}
-                      clicked={square.clicked}
                       id={square.key}
-                      column={square.col}
-                      row={square.row}
-                      show={square.display}
-                      flagged={square.flagged}
+                      sq={square}
                       onClick={handleSquareClick}
                       changeFace={setFace}
                     />
