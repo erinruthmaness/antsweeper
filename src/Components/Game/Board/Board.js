@@ -33,7 +33,12 @@ const Board = () => {
     if (whichClick === "left") {
       let leftResult = leftClick(clickedSquare);
       clickedSquare = leftResult.square;
-      setFace(leftResult.face);
+      if (!leftResult.square.ant) {
+        setFace(leftResult.face);
+      } else {
+        setFace(faces.exploded);
+        setGameInProgress(false);
+      }
     } else if (whichClick === "right") {
       let rightResult = rightClick(clickedSquare);
       clickedSquare = rightResult.square;
@@ -58,6 +63,7 @@ const Board = () => {
                       sq={square}
                       onClick={handleSquareClick}
                       changeFace={setFace}
+                      gameOver={!gameInProgress}
                     />
                   ))}
                 </div>

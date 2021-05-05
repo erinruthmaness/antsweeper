@@ -11,6 +11,9 @@ function Square(props) {
   const countRef = useRef();
 
   const parseClick = (event, eventString) => {
+    if (props.gameOver) {
+      return;
+    }
     switch (eventString) {
       case "down":
         //changes facebutton and determines if left or right click
