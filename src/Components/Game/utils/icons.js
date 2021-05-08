@@ -14,5 +14,6 @@ export const faces = {
     exploded: ["0xD83E", "0xDD2F"],
     shades: ["0xD83D", "0xDE0E"],
     xEyes: ["0xD83D", "0xDE35"],
-    sweating: ["0xD83D", "0xDE13"]
+    sweating: ["0xD83D", "0xDE13"],
+    winking: ["0xD83D", "0xDE09"]
 }

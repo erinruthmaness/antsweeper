@@ -1,52 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import Controls from "../Controls/Controls";
-import Square from "../Square/Square";
 
 import { faces } from "../utils/icons";
-import { assignAnts } from "../utils/build";
-import { leftClick, rightClick } from "../utils/click";
+import { assignAnts } from "../utils/create";
+import { boardHandler } from "../utils/read";
+import { updateBoard } from "../utils/update";
 
 import styles from "./Board.module.css";
+
+let gameParams = {
+  rows: 8,
+  cols: 8,
+  ants: 10,
+};
 
 const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [face, setFace] = useState(faces.sleeping);
 
-  const buildBoard = (cols, rows, ants) => {
-    setBoardGrid(assignAnts(cols, rows, ants));
-  };
-
   const onStart = () => {
     setBoardGrid([]);
-    buildBoard(8, 8, 10);
+    setBoardGrid(assignAnts(gameParams));
     setGameInProgress(true);
     setFace(faces.smiling);
   };
 
-  const handleSquareClick = (colIndex, rowIndex, whichClick) => {
-    let updateGrid = boardGrid;
-    let clickedSquare = updateGrid[colIndex][rowIndex];
+  const handleSquareClick = useCallback((colIndex, rowIndex, whichClick) => {
+    let updateGrid = [...boardGrid];
+    let clickedSquare = boardGrid[colIndex][rowIndex];
     console.log("handling a " + whichClick + " click for:");
     console.log(clickedSquare);
-    if (whichClick === "left") {
-      let leftResult = leftClick(clickedSquare);
-      clickedSquare = leftResult.square;
-      if (!leftResult.square.ant) {
-        setFace(leftResult.face);
-      } else {
-        setFace(faces.exploded);
-        setGameInProgress(false);
-      }
-    } else if (whichClick === "right") {
-      let rightResult = rightClick(clickedSquare);
-      clickedSquare = rightResult.square;
-      setFace(rightResult.face);
-    }
-    updateGrid[colIndex][rowIndex] = clickedSquare;
+    let updateAction = boardHandler.routeClick(clickedSquare, whichClick);
+    updateGrid[colIndex][rowIndex] = updateAction.square;
     setBoardGrid(updateGrid);
-  };
+    setFace(updateAction.face);
+    setGameInProgress(updateAction.continue);
+  }, [boardGrid]);
+
+  useEffect(() => {
+    updateBoard(boardGrid, handleSquareClick, setFace, gameInProgress);
+  }, [boardGrid, handleSquareClick, gameInProgress]);
 
   return (
     <section className={styles.window__inner}>
@@ -54,20 +49,7 @@ const Board = () => {
         <Controls startGame={onStart} inProgress={gameInProgress} face={face} />
         <section className={styles.board__inner}>
           {boardGrid
-            ? boardGrid.map((row, index) => (
-                <div className={styles.board_row} key={`row-${index}`}>
-                  {row.map((square) => (
-                    <Square
-                      key={square.key}
-                      id={square.key}
-                      sq={square}
-                      onClick={handleSquareClick}
-                      changeFace={setFace}
-                      gameOver={!gameInProgress}
-                    />
-                  ))}
-                </div>
-              ))
+            ? updateBoard(boardGrid, handleSquareClick, setFace, gameInProgress)
             : null}
         </section>
       </div>
