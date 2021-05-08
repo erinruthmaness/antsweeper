@@ -67,14 +67,14 @@ export const boardHandler = {
             display: squares.ant,
             revealed: true,
           },
-          face: faces.upsideDown,
+          face: faces.exploded,
           continue: false,
         };
       } else {
         return {
           square: {
             ...sq,
-            display: squares.clicked,
+            display: sq.neighbors,
             revealed: true,
           },
           face: faces.smiling,

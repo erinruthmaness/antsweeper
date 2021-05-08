@@ -1,8 +1,8 @@
 import { squares } from "./icons";
-import { shuffle } from "./helpers";
+import { shuffle, buildNeighborhood } from "./helpers";
 
 //define what each "square" should start out with in Board state
-export const buildSquare = (col, row) => {
+const buildSquare = (col, row) => {
   return {
     key: "cell-" + col + "-" + row,
     col: col,
@@ -11,11 +11,12 @@ export const buildSquare = (col, row) => {
     revealed: false,
     display: squares.unclicked,
     flagged: false,
+    neighbors: 0,
   };
 };
 
 //make an array of arrays of "squares"
-export const buildInitBoard = (cols, rows) => {
+const buildBlankBoard = (cols, rows) => {
   return Array.from(Array(cols), (col, colIndex) => {
     return Array.from(Array(rows), (row, rowIndex) =>
       buildSquare(colIndex, rowIndex)
@@ -25,7 +26,7 @@ export const buildInitBoard = (cols, rows) => {
 
 //make an array of true bools
 //with falses equal to the number of ants shuffled in
-export const buildAnthill = (length, ants) => {
+const buildAnthill = (length, ants) => {
   let starterArray = Array.from(Array(length), (square, idx) => {
     return { id: idx + 1, ant: false };
   });
@@ -35,11 +36,9 @@ export const buildAnthill = (length, ants) => {
   return shuffle(starterArray);
 };
 
-//called by Board
-export const assignAnts = ({ cols, rows, ants }) => {
-  let initBoard = buildInitBoard(cols, rows);
-  let antArray = buildAnthill(cols * rows, ants);
-  let counter = cols * rows - 1;
+const assignAnts = (initBoard, cellCount, numAnts) => {
+  let antArray = buildAnthill(cellCount, numAnts);
+  let counter = cellCount - 1;
   initBoard.forEach((row) => {
     row.forEach((cell) => {
       cell.ant = antArray[counter].ant;
@@ -47,4 +46,37 @@ export const assignAnts = ({ cols, rows, ants }) => {
     });
   });
   return initBoard;
+};
+
+const findNeighbors = (board) => {
+  console.log("hold up");
+  board.forEach((row, thisRow) => {
+    console.log("row #" + thisRow);
+    row.forEach((cell, thisCol) => {
+      console.log("col #" + thisCol);
+      console.log(cell);
+      let numAnts = 0;
+      let neighborhood = buildNeighborhood(board, thisRow, thisCol);
+      console.log(neighborhood);
+      neighborhood.forEach((square) => {
+        if (square && square.ant) {
+          numAnts++;
+        }
+      });
+      cell.neighbors = numAnts;
+      console.log(cell);
+    });
+  });
+  return board;
+};
+
+//called by Board
+export const boardBuilder = ({ cols, rows, ants }) => {
+  let blankBoard = buildBlankBoard(cols, rows);
+  console.log(blankBoard);
+  let boardWAnts = assignAnts(blankBoard, cols * rows, ants);
+  console.log(boardWAnts);
+  let finalBoard = findNeighbors(boardWAnts);
+  console.log(finalBoard);
+  return finalBoard;
 };

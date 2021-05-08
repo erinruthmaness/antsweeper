@@ -4,7 +4,7 @@ import Controls from "../Controls/Controls";
 import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
 
 import { faces } from "../utils/icons";
-import { assignAnts } from "../utils/create";
+import { boardBuilder } from "../utils/create";
 import { boardHandler } from "../utils/read";
 
 import styles from "./Board.module.css";
@@ -22,7 +22,7 @@ const Board = () => {
 
   const onStart = () => {
     setBoardGrid([]);
-    setBoardGrid(assignAnts(gameParams));
+    setBoardGrid(boardBuilder(gameParams));
     setGameInProgress(true);
     setFace(faces.smiling);
   };
