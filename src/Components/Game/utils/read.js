@@ -23,8 +23,6 @@ export const squareHandler = {
     }
   },
   mouseDown: (whichNum, squareProps) => {
-    console.log("clicking " + squareProps.id);
-    console.log(squareProps.sq);
     if (whichNum === 1) {
       //left click
       if (squareProps.flagged) {
@@ -47,16 +45,14 @@ export const squareHandler = {
 
 //returns { square: {updated square}, face: [face code], continue: bool }
 export const boardHandler = {
-  routeClick: (clickedSquare, whichClick) => {
-    console.log("handling a " + whichClick + " click for:");
-    console.log(clickedSquare);
+  routeClick: (clickedSquare, whichClick, remFlags) => {
     if (whichClick === "left") {
-      return boardHandler.leftClick(clickedSquare);
+      return boardHandler.leftClick(clickedSquare, remFlags);
     } else if (whichClick === "right") {
-      return boardHandler.rightClick(clickedSquare);
+      return boardHandler.rightClick(clickedSquare, remFlags);
     }
   },
-  leftClick: (sq) => {
+  leftClick: (sq, remFlags) => {
     if (sq.flagged || sq.revealed) {
       return { square: sq, face: faces.smiling, continue: true };
     } else {
@@ -69,21 +65,24 @@ export const boardHandler = {
           },
           face: faces.exploded,
           continue: false,
+          flags: remFlags,
         };
       } else {
         return {
           square: {
             ...sq,
-            display: sq.neighbors,
+            display: sq.nearbyAnts === 0 ? "" : sq.nearbyAnts,
             revealed: true,
           },
           face: faces.smiling,
           continue: true,
+          flags: remFlags,
         };
       }
     }
   },
-  rightClick: (sq) => {
+  rightClick: (sq, remFlags) => {
+    //removing a flag
     if (sq.flagged) {
       return {
         square: {
@@ -94,18 +93,30 @@ export const boardHandler = {
         },
         face: faces.smiling,
         continue: true,
+        flags: remFlags + 1,
       };
     } else {
-      return {
-        square: {
-          ...sq,
-          display: squares.flag,
-          revealed: false,
-          flagged: true,
-        },
-        face: faces.smiling,
-        continue: true,
-      };
+      if (remFlags > 0) {
+        return {
+          square: {
+            ...sq,
+            display: squares.flag,
+            revealed: false,
+            flagged: true,
+          },
+          face: faces.smiling,
+          continue: true,
+          flags: remFlags - 1,
+        };
+      } else {
+        //player can't place more flags than ants
+        return {
+          square: { ...sq },
+          face: faces.smiling,
+          continue: true,
+          flags: remFlags,
+        };
+      }
     }
   },
 };

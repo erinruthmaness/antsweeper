@@ -6,50 +6,67 @@ import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
 import { faces } from "../utils/icons";
 import { boardBuilder } from "../utils/create";
 import { boardHandler } from "../utils/read";
+// import { uncoverNeighbors } from "../utils/update";
 
 import styles from "./Board.module.css";
-
-let gameParams = {
-  rows: 8,
-  cols: 8,
-  ants: 10,
-};
 
 const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
+  const [gameParams, setGameParams] = useState({
+    rows: 8,
+    cols: 8,
+    ants: 10,
+  });
   const [face, setFace] = useState(faces.sleeping);
+  const [flags, setFlags] = useState(0);
 
   const onStart = () => {
     setBoardGrid([]);
     setBoardGrid(boardBuilder(gameParams));
     setGameInProgress(true);
     setFace(faces.smiling);
+    setFlags(gameParams.ants);
   };
 
   const handleSquareClick = useCallback(
-    (colIndex, rowIndex, whichClick) => {
+    (rowIndex, colIndex, whichClick) => {
       let updateGrid = [...boardGrid];
-      let clickedSquare = boardGrid[colIndex][rowIndex];
+      let clickedSquare = boardGrid[rowIndex][colIndex];
       console.log("handling a " + whichClick + " click for:");
       console.log(clickedSquare);
-      let updateAction = boardHandler.routeClick(clickedSquare, whichClick);
-      updateGrid[colIndex][rowIndex] = updateAction.square;
+      let updateAction = boardHandler.routeClick(
+        clickedSquare,
+        whichClick,
+        flags
+      );
+      updateGrid[rowIndex][colIndex] = updateAction.square;
+      if (updateAction.square.nearbyAnts === 0) {
+        // updateAction.square.neighbors.forEach((neighborsq) => {
+          // updateGrid = uncoverNeighbors(updateGrid[neighborsq.row][neighborsq.col], updateGrid)
+        // })
+      }
       setBoardGrid(updateGrid);
       setFace(updateAction.face);
+      setFlags(updateAction.flags);
       setGameInProgress(updateAction.continue);
     },
-    [boardGrid]
+    [boardGrid, flags]
   );
 
   return (
     <section className={styles.window__inner}>
       <div className={styles.board__outer}>
-        <Controls startGame={onStart} inProgress={gameInProgress} face={face} />
+        <Controls
+          startGame={onStart}
+          inProgress={gameInProgress}
+          face={face}
+          flags={flags}
+        />
         <section className={styles.board__inner}>
           {boardGrid ? (
             <SquaresWrapper
-            boardGrid={boardGrid}
+              boardGrid={boardGrid}
               handleSquareClick={handleSquareClick}
               setFace={setFace}
               gameInProgress={gameInProgress}

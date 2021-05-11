@@ -10,8 +10,12 @@
 }
 
 .calc_screen__wrapper {
-    margin: 5px 10px;
+    margin: 5px;
     flex-grow: 1;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    justify-items: center;
 }
 
 /* .face_button__wrapper {

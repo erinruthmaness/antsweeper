@@ -87,7 +87,7 @@ function Square(props) {
     //because that should stay the same across the game
     clickType = "left";
     touchLength = 0;
-    props.onClick(props.sq.col, props.sq.row, leftOrRight);
+    props.onClick(props.sq.row, props.sq.col, leftOrRight);
   };
 
   return (

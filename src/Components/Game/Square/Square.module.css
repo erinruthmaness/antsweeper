@@ -9,7 +9,8 @@
 }
 
 .clicked_square {
-    background-color: #ffffffe0;
+    background-color: #e0e0e0;
     box-shadow: none;
-    border: none;
+    border-color: #c3c7cb;
+    border-style:ridge;
 }
