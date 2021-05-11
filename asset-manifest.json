@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/antsweeper/static/css/main.db3ec6d8.chunk.css",
-    "main.js": "/antsweeper/static/js/main.9865faa6.chunk.js",
-    "main.js.map": "/antsweeper/static/js/main.9865faa6.chunk.js.map",
+    "main.css": "/antsweeper/static/css/main.ef41286b.chunk.css",
+    "main.js": "/antsweeper/static/js/main.8c986b9f.chunk.js",
+    "main.js.map": "/antsweeper/static/js/main.8c986b9f.chunk.js.map",
     "runtime-main.js": "/antsweeper/static/js/runtime-main.a986fe7f.js",
     "runtime-main.js.map": "/antsweeper/static/js/runtime-main.a986fe7f.js.map",
-    "static/js/2.8aebba18.chunk.js": "/antsweeper/static/js/2.8aebba18.chunk.js",
-    "static/js/2.8aebba18.chunk.js.map": "/antsweeper/static/js/2.8aebba18.chunk.js.map",
+    "static/js/2.76fe886a.chunk.js": "/antsweeper/static/js/2.76fe886a.chunk.js",
+    "static/js/2.76fe886a.chunk.js.map": "/antsweeper/static/js/2.76fe886a.chunk.js.map",
     "index.html": "/antsweeper/index.html",
-    "static/css/main.db3ec6d8.chunk.css.map": "/antsweeper/static/css/main.db3ec6d8.chunk.css.map",
-    "static/js/2.8aebba18.chunk.js.LICENSE.txt": "/antsweeper/static/js/2.8aebba18.chunk.js.LICENSE.txt"
+    "static/css/main.ef41286b.chunk.css.map": "/antsweeper/static/css/main.ef41286b.chunk.css.map",
+    "static/js/2.76fe886a.chunk.js.LICENSE.txt": "/antsweeper/static/js/2.76fe886a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a986fe7f.js",
-    "static/js/2.8aebba18.chunk.js",
-    "static/css/main.db3ec6d8.chunk.css",
-    "static/js/main.9865faa6.chunk.js"
+    "static/js/2.76fe886a.chunk.js",
+    "static/css/main.ef41286b.chunk.css",
+    "static/js/main.8c986b9f.chunk.js"
   ]
 }
