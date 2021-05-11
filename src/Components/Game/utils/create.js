@@ -37,18 +37,25 @@ const buildAnthill = (length, ants) => {
   return shuffle(starterArray);
 };
 
+//spread ants randomly through new board
 const assignAnts = (initBoard, cellCount, numAnts) => {
   let antArray = buildAnthill(cellCount, numAnts);
   let counter = cellCount - 1;
+  let antMasterlist = [];
   initBoard.forEach((row) => {
     row.forEach((cell) => {
       cell.ant = antArray[counter].ant;
       counter--;
+      if (cell.ant) {
+        antMasterlist.push(cell.key)
+      }
     });
   });
-  return findNeighbors(initBoard);
+  return [initBoard, antMasterlist];
 };
 
+//count adjacent ants
+//and keep track of which all adjacent squares
 const findNeighbors = (board) => {
   board.forEach((row, thisRow) => {
     row.forEach((cell, thisCol) => {
@@ -68,6 +75,9 @@ const findNeighbors = (board) => {
 
 //called by Board
 export const boardBuilder = ({ rows, cols, ants }) => {
-  let starterBoard = buildBlankBoard(rows, cols)
-  return assignAnts(starterBoard, rows * cols, ants);
+  let starterBoard = buildBlankBoard(rows, cols);
+  let [newGame, allAnts] = assignAnts(starterBoard, rows * cols, ants);
+  let finalizedBoard = findNeighbors(newGame);
+  console.log(finalizedBoard);
+  return finalizedBoard;
 };

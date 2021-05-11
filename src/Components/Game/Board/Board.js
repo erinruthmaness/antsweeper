@@ -6,7 +6,7 @@ import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
 import { faces } from "../utils/icons";
 import { boardBuilder } from "../utils/create";
 import { boardHandler } from "../utils/read";
-// import { uncoverNeighbors } from "../utils/update";
+import { uncoverZeros } from "../utils/update";
 
 import styles from "./Board.module.css";
 
@@ -14,8 +14,8 @@ const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [gameParams, setGameParams] = useState({
-    rows: 8,
-    cols: 8,
+    rows: 10,
+    cols: 10,
     ants: 10,
   });
   const [face, setFace] = useState(faces.sleeping);
@@ -42,9 +42,7 @@ const Board = () => {
       );
       updateGrid[rowIndex][colIndex] = updateAction.square;
       if (updateAction.square.nearbyAnts === 0) {
-        // updateAction.square.neighbors.forEach((neighborsq) => {
-          // updateGrid = uncoverNeighbors(updateGrid[neighborsq.row][neighborsq.col], updateGrid)
-        // })
+        updateGrid = uncoverZeros.start(rowIndex, colIndex, updateGrid);
       }
       setBoardGrid(updateGrid);
       setFace(updateAction.face);
