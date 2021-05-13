@@ -130,3 +130,44 @@ export const uncoverZeros = {
     };
   },
 };
+
+export const uncoverNeighbors = (startingSquare, board) => {
+  //assumes a nearbyAnts === 0 starting square
+  let updatedBoard = board;
+  //   console.log("here we go with this board:");
+  //   console.log(updatedBoard);
+  startingSquare.neighbors.forEach((sq) => {
+    if (!board[sq.row][sq.col].revealed) {
+      board[sq.row][sq.col] = {
+        ...sq,
+        revealed: true,
+        display: sq.nearbyAnts === 0 ? "" : sq.nearbyAnts,
+      };
+      if (sq.nearbyAnts === 0) {
+        board = recursiveUncover(sq, board);
+      }
+    }
+  });
+  return updatedBoard;
+};
+
+export const recursiveUncover = (centerSquare, board) => {
+  //   console.log("let's get recursive with " + centerSquare.key);
+  //   console.log("ants nearby: " + centerSquare.nearbyAnts);
+  //   console.log(centerSquare);
+  //   console.log(board);
+
+  centerSquare.neighbors.forEach((sq) => {
+    if (!board[sq.row][sq.col].revealed) {
+      board[sq.row][sq.col] = {
+        ...sq,
+        revealed: true,
+        display: sq.nearbyAnts === 0 ? "" : sq.nearbyAnts,
+      };
+      if (sq.nearbyAnts === 0) {
+        board = recursiveUncover(sq, board);
+      }
+    }
+  });
+  return board;
+};
