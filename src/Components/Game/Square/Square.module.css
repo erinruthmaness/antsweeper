@@ -1,47 +1,48 @@
 .grid_square {
-    height: 25px;
-    width: 25px;
-    margin: .02em;
-    padding: 0;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
+  height: 25px;
+  width: 25px;
+  margin: 0.02em;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .clicked_square {
-    background-color: #e0e0e0;
-    box-shadow: none;
-    border-color: #c3c7cb;
-    border-style:ridge;
+  background-color: #e0e0e0;
+  box-shadow: none;
+  border-color: #c3c7cbb2;
+  /* border-style:ridge; */
+  border-style: dashed;
 }
 
 .clicked_square.nearbys_0 {
-    color: white;
+  color: white;
 }
 .clicked_square.nearbys_1 {
-    color: #0000FF;
+  color: #0000ff;
 }
 .clicked_square.nearbys_2 {
-    color: #008a45;
+  color: #008a45;
 }
 .clicked_square.nearbys_3 {
-    color: #FF1300;
+  color: #ff1300;
 }
 .clicked_square.nearbys_4 {
-    color: #000083;
+  color: #000083;
 }
 .clicked_square.nearbys_5 {
-    color: #8A2D2D;
+  color: #8a2d2d;
 }
 .clicked_square.nearbys_6 {
-    color: #008080;
+  color: #008080;
 }
 .clicked_square.nearbys_7 {
-    color: #000000;
+  color: #000000;
 }
 .clicked_square.nearbys_8 {
-    color: #828282;
+  color: #828282;
 }
 .first_ant {
-    background-color: #FF1300;
+  background-color: #ff1300;
 }
