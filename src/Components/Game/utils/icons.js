@@ -1,6 +1,6 @@
 //img directories
 export const squares = {
-    unclicked: "?",
+    unclicked: "",
     clicked: "",
     ant: ["0xD83D", "0xDC1C"],
     flag: ["0xD83D", "0xDEA9"],

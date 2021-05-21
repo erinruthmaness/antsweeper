@@ -13,6 +13,7 @@ import styles from "./Board.module.css";
 const Board = () => {
   const [boardGrid, setBoardGrid] = useState([]);
   const [gameInProgress, setGameInProgress] = useState(false);
+  const [firstClick, setFirstClick] = useState(false);
   const [gameParams, setGameParams] = useState({
     rows: 8,
     cols: 8,
@@ -30,10 +31,15 @@ const Board = () => {
     setGameInProgress(true);
     setFace(faces.smiling);
     setFlags(gameParams.ants);
+    setFirstClick(false);
   };
 
   const handleSquareClick = useCallback(
     (rowIndex, colIndex, whichClick) => {
+      if (!firstClick) {
+        console.log("okay you started!");
+        setFirstClick(true);
+      }
       let updateGrid = [...boardGrid];
       let clickedSquare = boardGrid[rowIndex][colIndex];
       console.log("handling a " + whichClick + " click for:");
@@ -64,7 +70,7 @@ const Board = () => {
       setFace(updateAction.face);
       setFlags(updateAction.flags);
     },
-    [boardGrid, flags, gameParams]
+    [boardGrid, flags, gameParams, firstClick]
   );
 
   return (
@@ -75,6 +81,7 @@ const Board = () => {
           inProgress={gameInProgress}
           face={face}
           flags={flags}
+          firstClick={firstClick}
         />
         <section className={styles.board__inner}>
           {boardGrid ? (
