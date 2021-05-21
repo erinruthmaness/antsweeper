@@ -79,5 +79,5 @@ export const boardBuilder = ({ rows, cols, ants }) => {
   let [newGame, allAnts] = assignAnts(starterBoard, rows * cols, ants);
   let finalizedBoard = findNeighbors(newGame);
   console.log(finalizedBoard);
-  return finalizedBoard;
+  return [finalizedBoard, allAnts];
 };

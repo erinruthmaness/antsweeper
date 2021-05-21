@@ -34,3 +34,8 @@ export const buildNeighborhood = (wholeBoard, thisRow, thisCol) => {
       : [null, null, null];
   return rowAbove.concat(myRow, rowBelow);
 };
+
+
+export const assessDigit = (string, num) => {
+  return (string + "_" + num.toString());
+}

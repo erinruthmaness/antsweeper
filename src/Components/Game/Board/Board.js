@@ -6,8 +6,7 @@ import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
 import { faces } from "../utils/icons";
 import { boardBuilder } from "../utils/create";
 import { boardHandler } from "../utils/read";
-// import { uncoverZeros } from "../utils/update";
-import { uncoverNeighbors } from "../utils/update";
+import { uncoverNeighbors, checkForWin, detonateAnts } from "../utils/update";
 
 import styles from "./Board.module.css";
 
@@ -18,13 +17,16 @@ const Board = () => {
     rows: 8,
     cols: 8,
     ants: 10,
+    antList: [],
   });
   const [face, setFace] = useState(faces.sleeping);
   const [flags, setFlags] = useState(0);
 
   const onStart = () => {
     setBoardGrid([]);
-    setBoardGrid(boardBuilder(gameParams));
+    let [board, ants] = boardBuilder(gameParams);
+    setBoardGrid(board);
+    setGameParams({ ...gameParams, antList: ants });
     setGameInProgress(true);
     setFace(faces.smiling);
     setFlags(gameParams.ants);
@@ -42,16 +44,27 @@ const Board = () => {
         flags
       );
       updateGrid[rowIndex][colIndex] = updateAction.square;
-      if (updateAction.square.nearbyAnts === 0) {
-        // updateGrid = uncoverZeros.start(rowIndex, colIndex, updateGrid);
-        updateGrid = uncoverNeighbors(updateAction.square, updateGrid);
+      if (updateAction.square.revealed) {
+        //if the first ant was uncovered
+        if (updateAction.square.ant) {
+          setGameInProgress(false);
+          updateGrid = detonateAnts(updateGrid, gameParams.antList);
+        }
+        //if the last non-ant was uncovered
+        if (checkForWin(updateGrid, gameParams) && !updateAction.square.ant) {
+          updateAction.face = faces.shades;
+          setGameInProgress(false);
+        }
+        //if a square with no nearby ants was uncovered
+        if (updateAction.square.nearbyAnts === 0) {
+          updateGrid = uncoverNeighbors(updateAction.square, updateGrid);
+        }
       }
       setBoardGrid(updateGrid);
       setFace(updateAction.face);
       setFlags(updateAction.flags);
-      setGameInProgress(updateAction.continue);
     },
-    [boardGrid, flags]
+    [boardGrid, flags, gameParams]
   );
 
   return (

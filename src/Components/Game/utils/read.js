@@ -43,7 +43,7 @@ export const squareHandler = {
   },
 };
 
-//returns { square: {updated square}, face: [face code], continue: bool }
+//returns { square: {updated square}, face: [face code] }
 export const boardHandler = {
   routeClick: (clickedSquare, whichClick, remFlags) => {
     if (whichClick === "left") {
@@ -54,7 +54,7 @@ export const boardHandler = {
   },
   leftClick: (sq, remFlags) => {
     if (sq.flagged || sq.revealed) {
-      return { square: sq, face: faces.smiling, continue: true };
+      return { square: sq, face: faces.smiling };
     } else {
       if (sq.ant) {
         return {
@@ -64,7 +64,6 @@ export const boardHandler = {
             revealed: true,
           },
           face: faces.exploded,
-          continue: false,
           flags: remFlags,
         };
       } else {
@@ -75,7 +74,6 @@ export const boardHandler = {
             revealed: true,
           },
           face: faces.smiling,
-          continue: true,
           flags: remFlags,
         };
       }
@@ -92,7 +90,6 @@ export const boardHandler = {
           flagged: false,
         },
         face: faces.smiling,
-        continue: true,
         flags: remFlags + 1,
       };
     } else {
@@ -105,7 +102,6 @@ export const boardHandler = {
             flagged: true,
           },
           face: faces.smiling,
-          continue: true,
           flags: remFlags - 1,
         };
       } else {
@@ -113,7 +109,6 @@ export const boardHandler = {
         return {
           square: { ...sq },
           face: faces.smiling,
-          continue: true,
           flags: remFlags,
         };
       }

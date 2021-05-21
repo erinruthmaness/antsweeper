@@ -1,8 +1,6 @@
+import { assessDigit } from '../utils/helpers'
 import styles from "./CalcScreen.module.css";
 
-const assessDigit = (num) => {
-  return ("digit_" + num.toString());
-}
 
 const CalcScreen = (props) => {
   let displayNum = props.display.toString().padStart(3, "0").split("");
@@ -16,7 +14,7 @@ const CalcScreen = (props) => {
       {displayNum.map((digit, digitIdx) => (
         <div
           key={`${props.id}-digit-${digitIdx}`}
-          className={`${styles.calc_screen__digit} ${styles[assessDigit(digit)]}`}
+          className={`${styles.calc_screen__digit} ${styles[assessDigit("digit", digit)]}`}
         >
           <div className={`${styles.num_top} ${styles.digit_half}`}></div>
           <div className={`${styles.num_bottom} ${styles.digit_half}`}></div>

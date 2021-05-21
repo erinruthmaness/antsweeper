@@ -1,4 +1,5 @@
-import { useRef/*, useEffect*/ } from "react";
+import { useRef /*, useEffect*/ } from "react";
+import { assessDigit } from "../utils/helpers";
 import { squareHandler } from "../utils/read";
 import styles from "./Square.module.css";
 
@@ -92,9 +93,13 @@ function Square(props) {
 
   return (
     <button
-      className={`${styles.grid_square} windows95 ${
-        props.sq.revealed && styles.clicked_square
-      }`}
+      className={`
+        windows95 
+        ${styles.grid_square} 
+        ${props.sq.revealed && styles.clicked_square} 
+        ${styles[assessDigit("nearbys", props.sq.nearbyAnts)]}
+        ${(props.sq.revealed && props.sq.ant && !props.sq.unclickedAnt) && styles.first_ant} 
+      `}
       onMouseDown={(e) => parseClick(e, "down")}
       onMouseUp={!wasTouched ? (e) => parseClick(e, "up") : undefined}
       onTouchStart={() => parseTouch("start")}

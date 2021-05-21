@@ -14,3 +14,34 @@
     border-color: #c3c7cb;
     border-style:ridge;
 }
+
+.clicked_square.nearbys_0 {
+    color: white;
+}
+.clicked_square.nearbys_1 {
+    color: #0000FF;
+}
+.clicked_square.nearbys_2 {
+    color: #008a45;
+}
+.clicked_square.nearbys_3 {
+    color: #FF1300;
+}
+.clicked_square.nearbys_4 {
+    color: #000083;
+}
+.clicked_square.nearbys_5 {
+    color: #8A2D2D;
+}
+.clicked_square.nearbys_6 {
+    color: #008080;
+}
+.clicked_square.nearbys_7 {
+    color: #000000;
+}
+.clicked_square.nearbys_8 {
+    color: #828282;
+}
+.first_ant {
+    background-color: #FF1300;
+}
