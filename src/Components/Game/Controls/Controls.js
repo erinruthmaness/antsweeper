@@ -29,7 +29,7 @@ const Controls = (props) => {
     if (clockStarted && props.inProgress && props.firstClick) {
       timer = setInterval(() => {
         setClock((prevTime) => prevTime + 1);
-        console.log(clock);
+        // console.log(clock);
       }, 1000);
     }
     if (!props.inProgress) {
