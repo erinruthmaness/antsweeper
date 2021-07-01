@@ -1,4 +1,4 @@
-import { assessDigit } from '../utils/helpers'
+import { assessDigit } from '../../../utils/logic/helpers'
 import styles from "./CalcScreen.module.css";
 
 

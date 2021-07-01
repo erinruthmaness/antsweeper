@@ -1,6 +1,6 @@
 import { useRef /*, useEffect*/ } from "react";
-import { assessDigit } from "../utils/helpers";
-import { squareHandler } from "../utils/read";
+import { assessDigit } from "../../../utils/logic/helpers";
+import { squareHandler } from "../../../utils/logic/read";
 import styles from "./Square.module.css";
 
 //declared outside of the component in case it might rerender & reset to default

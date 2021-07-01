@@ -1,12 +1,3 @@
-//the Fisher-Yates shuffle
-export const shuffle = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
-
 //takes an array and an index and returns
 //[the value of the index before, the specified index, and the next index]
 //or null if there is no index before or after
@@ -35,7 +26,4 @@ export const buildNeighborhood = (wholeBoard, thisRow, thisCol) => {
   return rowAbove.concat(myRow, rowBelow);
 };
 
-
-export const assessDigit = (string, num) => {
-  return (string + "_" + num.toString());
-}
+export default buildNeighborhood;

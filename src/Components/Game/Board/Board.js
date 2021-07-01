@@ -1,54 +1,23 @@
 import { useCallback, useReducer } from "react";
 
+import boardReducer from "../../../utils/reducers/boardReducer";
+import roundReducer from "../../../utils/reducers/roundReducer";
+
 import Controls from "../Controls/Controls";
 import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
 
-import { faces } from "../utils/icons";
-import { boardBuilder } from "../utils/create";
-import { boardHandler } from "../utils/read";
-import { uncoverNeighbors, checkForWin, detonateAnts } from "../utils/update";
+import { faces } from "../../../utils/logic/icons";
+import buildBlankBoard from "../../../utils/logic/setup/buildBlankBoard";
+import buildNeighborhood from "../../../utils/logic/setup/buildNeighborhood";
+import addAnts from "../../../utils/logic/setup/addAnts";
+import { boardHandler } from "../../../utils/logic/read";
+import {
+  uncoverNeighbors,
+  checkForWin,
+  detonateAnts,
+} from "../../../utils/logic/update";
 
 import styles from "./Board.module.css";
-
-const boardReducer = (state, action) => {
-  switch (action.type) {
-    case "CLEAR_BOARD":
-      return { ...state, board: [] };
-    case "SET_ROUND":
-      return {
-        ...state,
-        ...action.payload,
-        face: faces.smiling,
-      };
-    case "UPDATE_BOARD":
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case "SET_FACE":
-      return {
-        ...state,
-        face: action.payload,
-      };
-    default:
-      return { ...state };
-  }
-};
-
-const roundReducer = (state, action) => {
-  switch (action.type) {
-    case "BOARD_SET":
-      return { ...state, ready: true };
-    case "START_ROUND":
-      console.log("okay you started!");
-      return { ...state, started: false };
-    case "WON":
-    case "LOST":
-      return { ...state, ready: false };
-    default:
-      return { ...state };
-  }
-};
 
 const Board = () => {
   const initialState = {
@@ -69,13 +38,15 @@ const Board = () => {
   });
 
   const onStart = () => {
+    //clear out previous round (if applicable)
     dispatchBoard({ type: "CLEAR_BOARD" });
-    let [newBoard, ants] = boardBuilder(boardState.parameters);
+    //let [newBoard, ants] = boardBuilder(boardState.parameters);
+    //fills out the board with uncovered squares, but no ants yet
     dispatchBoard({
-      type: "SET_ROUND",
+      type: "UNCOVER_BOARD",
       payload: {
-        board: newBoard,
-        parameters: { ...boardState.parameters, antList: ants },
+        board: buildBlankBoard(boardState.parameters.rows, boardState.parameters.cols),
+        parameters: { ...boardState.parameters },
         flags: boardState.parameters.ants,
       },
     });
@@ -84,7 +55,20 @@ const Board = () => {
 
   const handleSquareClick = useCallback(
     (rowIndex, colIndex, whichClick) => {
+      //first click
       if (!roundState.started) {
+        let clickedNeighborhood = buildNeighborhood(boardState.board, rowIndex, colIndex);
+        let [boardWithAnts, antList] = addAnts(boardState, clickedNeighborhood);
+        dispatchBoard({
+          type: "SET_ANTS",
+          payload: {
+            board: boardWithAnts,
+            parameters: {
+              ...boardState.parameters,
+              antList: antList
+            }
+          }
+        })
         dispatchRound({ type: "START_ROUND" });
       }
 
@@ -99,7 +83,7 @@ const Board = () => {
       );
       updateGrid[rowIndex][colIndex] = updateAction.square;
       if (updateAction.square.revealed) {
-        //if the first ant was uncovered
+        //if an ant was uncovered
         if (updateAction.square.ant) {
           dispatchRound({ type: "LOST" });
           updateGrid = detonateAnts(updateGrid, boardState.parameters.antList);

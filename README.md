@@ -9,7 +9,6 @@ I've been working on this project casually in my free time as I study my way bac
 
 ## Planned future additions include:
 
-* A logic tweak that prevents the first click from ever being an ant.
 * Different "levels" of gameplay (board sizes) including the option to set a custom board size (with some limitations).
 * User's highest score functionality using localstorage.
 * And maybe... a backend element that preserves all high scores
