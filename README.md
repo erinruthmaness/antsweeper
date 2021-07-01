@@ -1,5 +1,15 @@
-# Welcome To Antsweeper (hopefully)!
+# Welcome To Antsweeper!
 
-As I learn React hooks and other cool tips from Maximilien Schwarzmüller's updated React course on Udemy, I really want to practice some of this stuff for myself, so I thought it might be fun to try to figure out how to build a Minesweeper game!  But since I enjoy using emojis instead of uploading images, and inspired by some recent gardening projects I've undertaken, I'm replacing the bombs with ants.  One of those "don't step on the anthill" concepts I guess.
+This game recreates Windows 98 Minesweeper (but with ants - I garden a lot) using React and some concepts introduced by React hooks.  I love reverse-engineering games and ideas using JavaScript, and I also love Minesweeper, so this was bound to happen eventually.
 
-Watch this space and see what I figure out!
+I've been working on this project casually in my free time as I study my way back through React hooks, so it may be missing features when you see it.
+
+**[Click here to play!](https://erinruthmaness.github.io/antsweeper/)**
+
+
+## Planned future additions include:
+
+* A logic tweak that prevents the first click from ever being an ant.
+* Different "levels" of gameplay (board sizes) including the option to set a custom board size (with some limitations).
+* User's highest score functionality using localstorage.
+* And maybe... a backend element that preserves all high scores
