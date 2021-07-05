@@ -7,16 +7,29 @@
   width: fit-content;
   margin: 2px;
   border: 3px solid white;
-  border-right-color: #868A8E;
-  border-bottom-color: #868A8E;
+  border-right-color: #868a8e;
+  border-bottom-color: #868a8e;
   background-color: #c3c7cb;
   padding: 5px;
 }
 
 .board__inner {
-    width: fit-content;
-    min-width: 209px; /*8 squares*/
-    min-height: 209px;
-    box-shadow: inset 2px 2px #868A8E, inset -2px -2px white;
-    padding: 2px;
+  width: fit-content;
+  box-shadow: inset 2px 2px #868a8e, inset -2px -2px white;
+  padding: 2px;
+}
+
+.beginner {
+  min-width: 209px; /*8 squares*/
+  min-height: 209px;
+}
+
+.intermediate {
+  min-width: 414px; /*16 squares*/
+  min-height: 414px;
+}
+
+.expert {
+  min-width: 619px; /*24 squares*/
+  min-height: 619px;
 }

@@ -53,10 +53,6 @@ const findNeighbors = (board) => {
 
 const antInFirstClick = (antList, reservedNeighborhood) => {
   let foundMatch = false;
-  console.log("antlist:");
-  console.log(antList);
-  console.log("reserved neighborhood:");
-  console.log(reservedNeighborhood);
   reservedNeighborhood.forEach((sq) => {
     if (sq !== null && antList.some((el) => el === sq.key)) {
       foundMatch = true;

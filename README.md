@@ -9,6 +9,7 @@ I've been working on this project casually in my free time as I study my way bac
 
 ## Planned future additions include:
 
-* Different "levels" of gameplay (board sizes) including the option to set a custom board size (with some limitations).
+* Fixing up the CSS to be mobile-responsive, especially at levels above beginner
+* Reorganization of the "logic" files
 * User's highest score functionality using localstorage.
-* And maybe... a backend element that preserves all high scores
+* And maybe... a backend element that preserves all high scores and takes a high scorer's name

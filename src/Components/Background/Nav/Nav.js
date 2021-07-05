@@ -1,3 +1,5 @@
+import NavButton from "../../Menu/NavButton/NavButton";
+
 import styles from "./Nav.module.css";
 
 const Nav = () => {
@@ -14,10 +16,12 @@ const Nav = () => {
           <button className={styles.wc_close}></button>
         </span>
       </section>
-      <section className={styles.dropdown_menu}>
-        <button className={styles.dropdown_choice}>Game</button>
-        <button className={styles.dropdown_choice}>Help</button>
-      </section>
+      <nav>
+        <ul className={styles.dropdown_menu}>
+          <NavButton buttonText={"Game"} />
+          <NavButton buttonText={"Help"} />
+        </ul>
+      </nav>
     </header>
   );
 };

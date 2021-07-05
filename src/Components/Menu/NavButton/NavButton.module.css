@@ -1,0 +1,30 @@
+.dropdown_wrapper {
+  position: relative;
+  text-align: left;
+  top: 0;
+  left: 0;
+  max-width: 60px;
+}
+
+.dropdown_choice {
+  width: 60px;
+  margin: 2px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background-color: transparent;
+  line-height: 28px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  align-self: flex-start;
+}
+
+.dropdown_choice:first-letter {
+  text-decoration: underline;
+}
+
+.dropdown_choice:focus {
+  border-color: black;
+  background-color: #0000aa;
+  color: white;
+}

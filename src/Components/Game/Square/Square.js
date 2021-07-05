@@ -36,14 +36,14 @@ function Square(props) {
       return;
     } else if (eventString === "down") {
       wasClicked = true;
-      console.log("mouse down on " + props.id);
+      // console.log("mouse down on " + props.id);
       //returns which: left or right click
       //and face: what the face button should be (just :o since this is mousedown, not up)
       let downResult = squareHandler.mouseDown(event.nativeEvent.which, props);
       clickType = downResult.which;
       props.changeFace(downResult.face);
     } else if (eventString === "up") {
-      console.log("mouse up on " + props.id);
+      // console.log("mouse up on " + props.id);
       if (!wasTouched) {
         updateSquare(clickType);
       }
@@ -61,14 +61,14 @@ function Square(props) {
       return;
     } else if (eventString === "start") {
       wasTouched = true;
-      console.log("touch started on " + props.id);
+      // console.log("touch started on " + props.id);
       props.changeFace(squareHandler.touchStart(props.sq.flagged).face);
       countRef.current = setInterval(() => {
         touchLength++;
-        console.log(touchLength);
+        // console.log(touchLength);
       }, 800);
     } else if (eventString === "end") {
-      console.log("touch ended on " + props.id);
+      // console.log("touch ended on " + props.id);
       //stops timer
       clearInterval(countRef.current);
       //returns which: left or right click
