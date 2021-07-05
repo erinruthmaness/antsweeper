@@ -31,10 +31,21 @@ const Board = () => {
     getInitialBoard(paramCtx)
   );
 
+  const restartRound = useCallback(() => {
+    dispatchBoard({
+      type: "RESET_BOARD",
+      payload: getInitialBoard(paramCtx),
+    });
+    roundCtx.set.reset();
+  }, [paramCtx, roundCtx.set]);
+
   const onStart = () => {
+    //let happy onStart face restart a game in progress
+    if (roundCtx.started) {
+      restartRound();
+    }
     //clear out previous round (if applicable)
     dispatchBoard({ type: "CLEAR_BOARD" });
-    // dispatchBoard({ type: "RESET_BOARD", payload: initialState });
     //fills out the board with uncovered squares, but no ants yet
     dispatchBoard({
       type: "UNCOVER_BOARD",
@@ -119,17 +130,14 @@ const Board = () => {
   };
 
   useEffect(() => {
-    if (paramCtx.level !== boardState.level) {
-      console.log("params say level is: ", paramCtx.level);
-      console.log("but the board remembers the level as ", boardState.level);
-      let newState = getInitialBoard(paramCtx);
-      dispatchBoard({
-        type: "RESET_BOARD",
-        payload: newState,
-      });
-      roundCtx.set.reset();
+    //reset board if the level has changed or if the round shouldn't be started
+    if (
+      paramCtx.level !== boardState.level ||
+      (!roundCtx.ready && !roundCtx.started && boardState.board.length > 0)
+    ) {
+      restartRound();
     }
-  }, [paramCtx, boardState.level, roundCtx.set]);
+  }, [paramCtx.level, boardState.level, boardState.board, roundCtx, restartRound]);
   return (
     <section className={styles.window__inner}>
       <div className={styles.board__outer}>

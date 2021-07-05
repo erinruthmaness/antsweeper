@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import roundReducer from "../reducers/roundReducer";
+import initialRound from "./initialState/round";
 
 //for IDE completion
 const defaultContext = {
@@ -17,11 +18,7 @@ const roundContext = React.createContext(defaultContext);
 export default roundContext;
 
 export const RoundCtxProvider = (props) => {
-  const initialState = {
-    ready: false,
-    started: false,
-  };
-  const [roundState, dispatchRound] = useReducer(roundReducer, initialState);
+  const [roundState, dispatchRound] = useReducer(roundReducer, initialRound);
 
   const set = {
     ready: () => {
@@ -37,7 +34,7 @@ export const RoundCtxProvider = (props) => {
       dispatchRound({ type: "WON" });
     },
     reset: () => {
-      dispatchRound({ type: "RESET", payload: { ...initialState } });
+      dispatchRound({ type: "RESET", payload: { ...initialRound } });
     },
   };
 

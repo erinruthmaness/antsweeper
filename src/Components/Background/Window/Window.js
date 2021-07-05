@@ -8,8 +8,6 @@ import styles from "./Window.module.css";
 const Window = () => {
   const paramCtx = useContext(paramContext);
 
-  // const levelStyle = styles[]
-
   return (
     <main className={`windows95 ${styles.main_window} ${styles[paramCtx.level]}`}>
       <Nav />
