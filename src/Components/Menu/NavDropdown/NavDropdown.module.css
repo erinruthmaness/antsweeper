@@ -35,6 +35,10 @@
   padding-left: 25px;
 }
 
+.dropdown_menu_section > li:first-letter {
+  text-decoration: underline;
+}
+
 .dropdown_menu_section > li:hover {
   cursor: pointer;
   background-color: #0000aa;
