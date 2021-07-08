@@ -1,0 +1,70 @@
+/* tiny devices */
+@media only screen and (max-width: 325px) {
+    .beginner {
+        --square-font-size: 16px;
+        --square-size: 1.8em;
+        --board-size: 14.8em;
+    }
+    .intermediate {
+        --square-font-size: 12px;
+        --square-size: 1.2em;
+        --board-size: 20em;
+    }
+    .expert {
+        --square-font-size: 10px;
+        --square-size: 1em;
+        --board-size: 25em;
+    }
+}
+
+/* mobile devices */
+@media only screen and (min-width: 325px) {
+    .beginner {
+        --square-font-size: 16px;
+        --square-size: 2.1em;
+        --board-size: 17.1em;
+    }
+    .intermediate {
+        --square-font-size: 15px;
+        --square-size: 1.3em;
+        --board-size: 21.4em;
+    }
+    .expert {
+        --square-font-size: 13px;
+        --square-size: 1em;
+        --board-size: 24em;
+    }
+}
+
+/* tablets */
+@media only screen and (min-width: 768px) {
+    .beginner {
+        --square-font-size: 18px;
+        --square-size: 2.25em;
+        --board-size: 18.25em;
+    }
+    .intermediate {
+        --square-font-size: 16px;
+        --square-size: 2.1em;
+        --board-size: 34.2em;
+    }
+    .expert {
+        --square-font-size: 16px;
+        --square-size: 1.75em;
+        --board-size: 43em;
+    }
+}
+
+/* laptops */
+@media only screen and (min-width: 1024px) {
+    .intermediate {
+        --square-font-size: 18px;
+        --square-size: 2em;
+        --board-size: 32.8em;
+    }
+    .expert {
+        --square-font-size: 18px;
+        --square-size: 1.75em;
+        --board-size: 43em;
+    }
+}

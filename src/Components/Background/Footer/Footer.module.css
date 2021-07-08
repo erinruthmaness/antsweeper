@@ -1,7 +1,9 @@
-.windows_footer {
+.bg__footer {
     margin-top: auto;
-    height: 30px;
-    width: 100%;
-    border: none;
-    border-top: 1px solid #C0C0C0;
+    font-size: var(--menu-font-size);
+    height: 2em;
+    border: 1px solid var(--w98-dk-gray);
+    border-top-color: var(--w98-bg-gray);
+    box-shadow: var(--w98-box-shadow);
+    background-color: var(--w98-bg-gray);
 }

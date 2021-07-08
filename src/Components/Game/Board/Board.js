@@ -5,7 +5,7 @@ import boardReducer from "../../../utils/reducers/boardReducer";
 import getInitialBoard from "../../../utils/store/initialState/board";
 
 import Controls from "../Controls/Controls";
-import SquaresWrapper from "../SquaresWrapper/SquaresWrapper";
+import RowWrapper from "../RowWrapper/RowWrapper";
 
 import { faces } from "../../../utils/logic/icons";
 import buildBlankBoard from "../../../utils/logic/setup/buildBlankBoard";
@@ -139,8 +139,7 @@ const Board = () => {
     }
   }, [paramCtx.level, boardState.level, boardState.board, roundCtx, restartRound]);
   return (
-    <section className={styles.window__inner}>
-      <div className={styles.board__outer}>
+    <section className={styles.gameWrapper}>
         <Controls
           startGame={onStart}
           inProgress={roundCtx.ready}
@@ -148,9 +147,9 @@ const Board = () => {
           flags={boardState.flags}
           firstClick={roundCtx.started}
         />
-        <section className={`${styles.board__inner} ${styles[paramCtx.level]}`}>
+        <section className={styles.boardWrapper}>
           {boardState.board ? (
-            <SquaresWrapper
+            <RowWrapper
               boardGrid={boardState.board}
               handleSquareClick={handleSquareClick}
               setFace={handleFaceChange}
@@ -158,7 +157,6 @@ const Board = () => {
             />
           ) : null}
         </section>
-      </div>
     </section>
   );
 };

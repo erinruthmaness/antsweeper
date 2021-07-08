@@ -1,18 +1,17 @@
-.grid_square {
-  height: 25px;
-  width: 25px;
+.square {
   margin: 0.02em;
+  height: var(--square-size);
+  width: var(--square-size);
   padding: 0;
   text-align: center;
   font-weight: bold;
-  font-size: 16px;
+  font-size: var(--square-font-size);
 }
 
 .clicked_square {
-  background-color: #e0e0e0;
+  background-color: var(--w98-lightest-gray);
   box-shadow: none;
-  border-color: #c3c7cbb2;
-  /* border-style:ridge; */
+  border-color: var(--w98-light-gray);
   border-style: dashed;
 }
 
@@ -20,7 +19,7 @@
   color: white;
 }
 .clicked_square.nearbys_1 {
-  color: #0000ff;
+  color: #0000aa;
 }
 .clicked_square.nearbys_2 {
   color: #008a45;

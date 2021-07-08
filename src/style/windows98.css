@@ -1,0 +1,25 @@
+:root {
+    --w98-lightest-gray: #e0e0e0;
+    --w98-light-gray: #c3c7cb;
+    --w98-dk-gray: #868a8e;
+    --w98-bg-gray: #c0c0c0;
+    --w98-bluescreen-blue: #0000aa;
+
+    --w98-font-size: 18px;
+    --w98-box-shadow: inset 1px 1px var(--w98-lightest-gray), inset -1px -1px var(--w98-light-gray);
+    --w98-card-padding: 3px 2px 2px 3px;
+
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    letter-spacing: 0.05em;
+
+}
+
+/* .card--w98 {
+    border-top: 1px solid var(--w98-light-gray);
+    border-right: 1px solid var(--w98-dk-gray);
+    border-bottom: 1px solid var(--w98-dk-gray);
+    border-left: 1px solid var(--w98-light-gray);
+    background-color: var(--w98-bg-gray);
+    box-shadow: var(--w98-box-shadow);
+    padding: var(--w98-card-padding);
+  }  */

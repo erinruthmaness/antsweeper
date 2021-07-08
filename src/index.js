@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./style/index.css";
+import "./style/windows98.css";
+import "./style/levels.css";
+import "./style/breakpoints.css";
 import { ParamCtxProvider } from "./utils/store/paramsContext";
-import App from "./App";
+import App from "./Components/Background/App/App";
 
 ReactDOM.render(
   <React.StrictMode>
     <ParamCtxProvider>
-        <App />
+      <App />
     </ParamCtxProvider>
   </React.StrictMode>,
   document.getElementById("root")

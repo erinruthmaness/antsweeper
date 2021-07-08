@@ -143,14 +143,3 @@ code {
     monospace;
 }
 
-.windows95 {
-  border-top: 1px solid #c3c7cb;
-  border-left: 1px solid #c3c7cb;
-  border-right: 1px solid #868a8e;
-  border-bottom: 1px solid #868a8e;
-  background-color: #c0c0c0;
-  box-shadow: inset 1px 1px #e0e0e0, inset -1px -1px #c3c7cb;
-  padding: 3px 2px 2px 3px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  letter-spacing: 0.05em;
-}

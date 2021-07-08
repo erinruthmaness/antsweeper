@@ -1,16 +1,14 @@
-import { useContext } from "react";
-import paramContext from "../../../utils/store/paramsContext";
-
-import Nav from "../Nav/Nav";
+import Overlay from '../Overlay/Overlay';
+import MenuBar from "../../WindowHeader/MenuBar/MenuBar";
 import Board from "../../Game/Board/Board";
 import styles from "./Window.module.css";
 
 const Window = () => {
-  const paramCtx = useContext(paramContext);
 
   return (
-    <main className={`windows95 ${styles.main_window} ${styles[paramCtx.level]}`}>
-      <Nav />
+    <main className={styles.window}>
+      <Overlay />
+      <MenuBar />
       <Board />
     </main>
   );

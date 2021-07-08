@@ -1,7 +1,7 @@
 import Square from "../Square/Square";
-import styles from "./SquaresWrapper.module.css";
+import styles from "./RowWrapper.module.css";
 
-const SquaresWrapper = (props) => {
+const RowWrapper = (props) => {
   return props.boardGrid.map((row, index) => (
     <div className={styles.board_row} key={`row-${index}`}>
       {row.map((square) => (
@@ -18,4 +18,4 @@ const SquaresWrapper = (props) => {
   ));
 };
 
-export default SquaresWrapper;
+export default RowWrapper;

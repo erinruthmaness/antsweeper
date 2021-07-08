@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className={`windows95 ${styles.windows_footer}`}>
+    <footer className={styles.bg__footer}>
       <span></span>
       <span></span>
     </footer>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import levels from "./initialState/paramLevels";
 import { RoundCtxProvider } from "./roundContext";
+import { OverlayCtxProvider } from "./overlayContext";
 
 //for IDE completion
 const defaultContext = {
@@ -26,10 +27,12 @@ export const ParamCtxProvider = (props) => {
         ...params,
         setParameters: setParameters,
       }}
-      // reset={reset}
-      // triggerReset={triggerReset}
     >
-      <RoundCtxProvider>{props.children}</RoundCtxProvider>
+      <RoundCtxProvider>
+        <OverlayCtxProvider>
+        {props.children}
+        </OverlayCtxProvider>
+      </RoundCtxProvider>
     </paramContext.Provider>
   );
 };

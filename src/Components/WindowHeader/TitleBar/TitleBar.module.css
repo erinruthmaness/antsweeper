@@ -1,0 +1,63 @@
+.titleBar {
+    width: 100%;
+    background-color: var(--w98-bluescreen-blue);
+    padding: 2px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.titleBar__left {
+    margin-left: 5px;
+    line-height: 24px;
+}
+
+.titleBar__left h1 {
+    display: inline-block;
+    margin-left: .2em;
+    font-size: var(--w98-font-size);
+    font-weight: bold;
+}
+
+/* .menu_bar__right.windows95_button {
+    margin: 1px;
+} */
+
+/* source: https://gist.github.com/weslleih/, updated for CSS modules */
+
+.titleBar__right {
+    margin: 0;
+    margin-right: 5px;
+}
+
+.titleBar__right button {
+    height: 26px;
+    width: 30px;
+    display: inline-block;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAAA0CAIAAACIKsg4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF6SURBVGhD7ZjRbcMwDAWdLtIhvEI8QqZ1VvAQXcAfXcAVYIVwpJNMNCmECu8+EoYChPhAUoIv27YN4pmP+C0OSAogKYCkAJICSAogKUDje8qyLDEixnGM0a8Im+c7YDKh20rZdSfSMZnTrRQrB1NgwWmltG+f0l+sLPnJi8KzZ+eDNlHgtKzTB+hcStI+eTchPUsxBaFrrHE8XlyDtrSRs0UrhJ1Lm1SWPByN7EEAkzntpcSIeHF/1IrJBL15A3T6AJICSAogKYCkAJICSApwWdc1hv+N79stRu9GlQJICiApgKQAkgJICiApQON7yjRNMSLmeY4RcXpP+bzfv67X+OMBJhO6rZTw8PZpYDKnWylWDqbAgtNKad8+pR6pLO14rvl5UZwaCXQ+aBMFHiMBnT5A51KS9jkdsTs9SzlOVmscjxfXoC3dJuqD0MPfDdqjkT0IYDKnvZQYES+ePkFB/vCYTNCbN0CnDyApgKQAkgJICiApgKRkDMMPRZu6p8lX8BwAAAAASUVORK5CYII=);
+}
+
+.wc_minimize {
+    background-position: -4px -2px;
+}
+
+.wc_maximize {
+    background-position: -34px -2px;
+}
+
+.wc_close {
+    background-position: -64px -2px;
+}
+
+.wc_minimize:hover {
+    background-position: -4px -28px;
+}
+
+.wc_maximize:hover {
+    background-position: -34px -28px;
+}
+
+.wc_close:hover {
+    background-position: -64px -28px;
+}

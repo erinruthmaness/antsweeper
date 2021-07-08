@@ -1,27 +1,29 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import paramContext from "../../../utils/store/paramsContext";
 import roundContext from "../../../utils/store/roundContext";
+import overlayContext from "../../../utils/store/overlayContext";
 import levels from "../../../utils/store/initialState/paramLevels";
-import styles from "../NavDropdown/NavDropdown.module.css";
-// import styles from "./GameOptionsMenu.module.css";
+import styles from "../OptionDropdown/OptionDropdown.module.css";
+// import styles from "./GameMenu.module.css";
 
-const GameOptionsMenu = (props) => {
+const GameMenu = (props) => {
   const gameLevels = ["beginner", "intermediate", "expert"];
   const paramCtx = useContext(paramContext);
   const roundCtx = useContext(roundContext);
+  const overlayCtx = useContext(overlayContext);
 
   const handleSelect = (lvl) => {
-    props.dismiss();
+    overlayCtx.hide();
     paramCtx.setParameters(levels[lvl]);
   };
 
   const handleReset = () => {
-    props.dismiss();
+    overlayCtx.hide();
     roundCtx.set.reset();
   };
 
   return (
-    <li className={styles.dropdown_menu_contents}>
+    <Fragment>
       <ul className={styles.dropdown_menu_section}>
         <li onClick={handleReset}>New Game</li>
       </ul>
@@ -38,8 +40,8 @@ const GameOptionsMenu = (props) => {
           );
         })}
       </ul>
-    </li>
+    </Fragment>
   );
 };
 
-export default GameOptionsMenu;
+export default GameMenu;
