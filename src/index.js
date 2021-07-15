@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./style/index.css";
 import "./style/windows98.css";
 import "./style/levels.css";
-import "./style/breakpoints.css";
+// import "./style/breakpoints.css";
 import { ParamCtxProvider } from "./utils/store/paramsContext";
 import App from "./Components/Background/App/App";
 

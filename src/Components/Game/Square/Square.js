@@ -94,11 +94,10 @@ function Square(props) {
   return (
     <button
       className={`
-        card--w98 
         ${styles.square}
-        ${props.sq.revealed && styles.clicked_square} 
+        ${props.sq.revealed && styles["square--clicked"]} 
         ${styles[assessDigit("nearbys", props.sq.nearbyAnts)]}
-        ${(props.sq.revealed && props.sq.ant && !props.sq.unclickedAnt) ? styles.first_ant : null} 
+        ${(props.sq.revealed && props.sq.ant && !props.sq.unclickedAnt) ? styles.firstAnt : null} 
       `}
       onMouseDown={(e) => parseClick(e, "down")}
       onMouseUp={!wasTouched ? (e) => parseClick(e, "up") : undefined}

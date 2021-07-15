@@ -9,10 +9,9 @@ const TitleBar = () => {
           {String.fromCharCode(...squares.ant)}
           <h1>Antsweeper</h1>
         </span>
-        <span className={styles.titleBar__right} disabled>
-          <button className={styles.wc_minimize}></button>
-          <button className={styles.wc_maximize}></button>
-          <button className={styles.wc_close}></button>
+        <span className={styles.titleBar__right}>
+          <button>&#818;</button>
+          <button>&#10006;</button>
         </span>
       </section>
     )

@@ -42,23 +42,17 @@ const Controls = (props) => {
   }, [clock, clockStarted, props.firstClick, props.inProgress]);
 
   return (
-    <nav className={styles.board_controls}>
-      <div className={styles.calc_screen__wrapper}>
+    <section className={styles.controls}>
         <CalcScreen
           id={"flags"}
           display={props.inProgress || clockStarted ? props.flags : "off"}
         />
-      </div>
-      <div className={styles.face_button__wrapper}>
-        <FaceButton onClick={startGameHandler} face={props.face} />
-      </div>
-      <div className={styles.calc_screen__wrapper}>
+      <FaceButton onClick={startGameHandler} face={props.face} />
         <CalcScreen
           id={"timer"}
           display={props.inProgress || clockStarted ? clock : "off"}
         />
-      </div>
-    </nav>
+    </section>
   );
 };
 

@@ -1,9 +1,9 @@
 .window {
-    margin: auto;
-    border: 1px solid var(--w98-light-gray) var(--w98-dk-gray) var(--w98-dk-gray) var(--w98-light-gray);
+    margin: 2em auto;
+    width: fit-content;
+    border: var(--w98-border);
+    border-color: var(--w98-border-color);
     box-shadow: inset 1px 1px white;
     background-color: var(--w98-light-gray);
     padding: var(--w98-card-padding);
-    display: flex;
-    flex-direction: column;
 }

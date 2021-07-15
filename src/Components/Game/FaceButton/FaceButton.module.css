@@ -1,11 +1,9 @@
-.control_button {
-    width: 60px;
-    height: 60px;
-    margin: 2px auto;
-    background-color: #C3C7CB;
-    border-color: #868A8E black black #868A8E;
-    box-shadow: inset 1px 1px white, inset -1px -1px #868A8E;
-    padding: 5px;
-    font-size: 36px;
+.faceButton {
+    border-color: var(--w98-lightest-gray) var(--w98-darkest-gray) var(--w98-darkest-gray) var(--w98-lightest-gray);
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: 0;
+    line-height: 1.34;
+    font-size: 2.8em;
     cursor: pointer;
 }

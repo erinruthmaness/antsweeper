@@ -1,11 +1,11 @@
 import TitleBar from '../TitleBar/TitleBar';
 import OptionsBar from '../OptionsBar/OptionsBar';
 
-import styles from "./MenuBar.module.css";
+// import styles from "./MenuBar.module.css";
 
 const MenuBar = () => {
   return (
-    <header className={styles.menuBar}>
+    <header>
      <TitleBar />
      <OptionsBar />
     </header>

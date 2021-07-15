@@ -9,9 +9,8 @@
 }
 
 .boardWrapper {
-  margin: 1px;
   min-width: fit-content;
-  box-shadow: inset 2px 2px var(--w98-dk-gray), inset -2px -2px white;
+  box-shadow: var(--w98-box-shadow-dip);
   padding: 2px;
   font-size: var(--square-font-size);
   width: var(--board-size);

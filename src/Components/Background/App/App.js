@@ -5,12 +5,12 @@ import { useContext } from 'react';
 import paramContext from '../../../utils/store/paramsContext';
 import '../../../style/levels.css'
 
-import styles from './App.module.css';
+// import styles from './App.module.css';
 
 function App() {
   const paramCtx = useContext(paramContext)
   return (
-    <div className={`${styles.bg} ${paramCtx.level}`}>
+    <div className={paramCtx.level}>
       <Window />
       <Footer />
     </div>

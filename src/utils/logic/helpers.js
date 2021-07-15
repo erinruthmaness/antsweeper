@@ -8,5 +8,5 @@ export const shuffle = (array) => {
 };
 
 export const assessDigit = (string, num) => {
-  return string + "_" + num.toString();
+  return string + "--" + num.toString();
 };

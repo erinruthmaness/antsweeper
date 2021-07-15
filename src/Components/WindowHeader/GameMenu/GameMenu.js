@@ -24,16 +24,16 @@ const GameMenu = (props) => {
 
   return (
     <Fragment>
-      <ul className={styles.dropdown_menu_section}>
+      <ul className={styles.dropdown__section}>
         <li onClick={handleReset}>New Game</li>
       </ul>
-      <ul className={styles.dropdown_menu_section}>
+      <ul className={styles.dropdown__section}>
         {gameLevels.map((lvl) => {
           return (
             <li
               key={`level-${lvl}`}
               onClick={() => handleSelect(lvl)}
-              className={paramCtx.level === lvl ? styles.selected : null}
+              className={paramCtx.level === lvl ? styles["--selected"] : null}
             >
               {lvl.charAt(0).toUpperCase() + lvl.slice(1)}
             </li>

@@ -1,9 +1,9 @@
-.calc_screen {
-  margin: 0 auto;
+.calcScreen {
+  margin: 0 2em;
   height: fit-content;
   width: fit-content;
-  border-top: 1px solid #868a8e;
-  border-left: 1px solid #868a8e;
+  border-top: 1px solid var(--w98-dk-gray);
+  border-left: 1px solid var(--w98-dk-gray);
   border-bottom: 1px solid white;
   border-right: 1px solid white;
   background-color: black;
@@ -13,77 +13,75 @@
   align-content: stretch;
 }
 
-.calc_screen__digit {
-  height: 42px;
-  width: 21px;
+.digit {
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
+  justify-content: center;
   align-content: stretch;
 }
 
-.digit_half {
-  margin: 0.5px;
-  width: 12px;
-  height: 12px;
-  border: 4px solid #ff0000e0;
+.digit__half {
+  margin: .05em;
+  width: .9em;
+  height: .9em;
+  border: .4em solid #ff0000e0;
   position: relative;
 }
 
-.digit_half:before,
-.digit_half:after {
+.digit__half:before,
+.digit__half:after {
   content: "";
   position: absolute;
-  top: 5px;
-  left: -7px;
-  width: 27px;
-  height: 0.1px;
+  top: .4em;
+  left: -.76em;
+  width: 2.4em;
+  height: 0.1em;
   background-color: #000000d5;
   z-index: 2;
 }
 
-.digit_half:before {
+.digit__half:before {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.digit_half:after {
+.digit__half:after {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
-.digit_0 .num_top {
+.digit--0 .digit__top {
   border-bottom-color: #ff00003f;
 }
 
-.digit_0 .num_bottom,
-.digit_4 .num_top {
+.digit--0 .digit__bottom,
+.digit--4 .digit__top {
   border-top-color: #ff00003f;
 }
-.digit_1 .digit_half, .digit_7 .num_bottom {
+.digit--1 .digit__half, .digit--7 .digit__bottom {
   border-color: #ff00003f;
   border-right-color: #ff0000e0;
 }
 
-.digit_2 .num_top,
-.digit_5 .num_bottom,
-.digit_3 .digit_half,
-.digit_9 .num_bottom {
+.digit--2 .digit__top,
+.digit--5 .digit__bottom,
+.digit--3 .digit__half,
+.digit--9 .digit__bottom {
   border-left-color: #ff00003f;
 }
 
-.digit_2 .num_bottom,
-.digit_5 .num_top,
-.digit_6 .num_top {
+.digit--2 .digit__bottom,
+.digit--5 .digit__top,
+.digit--6 .digit__top {
   border-right-color: #ff00003f;
 }
 
-.digit_7 .num_top, .digit_4 .num_bottom {
+.digit--7 .digit__top, .digit--4 .digit__bottom {
   border-left-color: #ff00003f;
   border-bottom-color: #ff00003f;
 }
 
-.num_top {
+.digit__top {
   margin-bottom: 0px;
 }

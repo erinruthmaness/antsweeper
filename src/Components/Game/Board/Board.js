@@ -139,7 +139,7 @@ const Board = () => {
     }
   }, [paramCtx.level, boardState.level, boardState.board, roundCtx, restartRound]);
   return (
-    <section className={styles.gameWrapper}>
+    <article className={styles.gameWrapper}>
         <Controls
           startGame={onStart}
           inProgress={roundCtx.ready}
@@ -157,7 +157,7 @@ const Board = () => {
             />
           ) : null}
         </section>
-    </section>
+    </article>
   );
 };
 
