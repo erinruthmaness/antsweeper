@@ -10,10 +10,9 @@ I've been working on this project casually in my free time as I study my way bac
 ## Planned future additions include:
 
 * Redesigned dropdown menu functionality using a React portal instead of/in addition to a context hook
-* Fixing up the CSS to be mobile-responsive, especially at levels above beginner
-* Redesigning CSS to meet BEM architecture standards
 * Added accessible functionality for keyboard-only users
 * Reorganization of the "logic" files
+* "?" indicator as well as flag for squares of which the user is unsure
 * User's highest score functionality using localstorage
 * A popup with the information in this readMe triggered from within the Help menu
 * And maybe... a backend element that preserves all high scores and takes a high scorer's name
