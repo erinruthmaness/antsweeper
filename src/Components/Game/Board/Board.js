@@ -7,20 +7,19 @@ import getInitialBoard from "../../../utils/store/initialState/board";
 import Controls from "../Controls/Controls";
 import RowWrapper from "../RowWrapper/RowWrapper";
 
-import { faces } from "../../../utils/logic/icons";
-import buildBlankBoard from "../../../utils/logic/setup/buildBlankBoard";
-import buildNeighborhood from "../../../utils/logic/setup/buildNeighborhood";
-import addAnts from "../../../utils/logic/setup/addAnts";
+import { faces } from "../../../imgs/icons";
+import newRound from "./logic/newRound";
+import startRound from "./logic/startRound";
 
-import { boardHandler } from "../../../utils/logic/read";
-import {
-  uncoverNeighbors,
-  checkForWin,
-  detonateAnts,
-} from "../../../utils/logic/update";
+import playerMoveReducer from "./logic/clickHandler";
+// import clickHandler from "./logic/clickHandler";
+// import { checkForWin } from "../../../utils/logic/playerMove/checkForWin";
+// import uncoverNeighbors from "../../../utils/logic/playerMove/uncoverNeighbors";
+// import { detonateAnts } from "../../../utils/logic/gameOver/detonateAnts";
 
 import styles from "./Board.module.css";
 import roundContext from "../../../utils/store/roundContext";
+import endRound from "./logic/endRound";
 
 const Board = () => {
   const paramCtx = useContext(paramsContext);
@@ -50,10 +49,7 @@ const Board = () => {
     dispatchBoard({
       type: "UNCOVER_BOARD",
       payload: {
-        board: buildBlankBoard(
-          boardState.parameters.rows,
-          boardState.parameters.cols
-        ),
+        board: newRound(boardState.parameters.rows, boardState.parameters.cols),
         parameters: { ...boardState.parameters },
         flags: boardState.parameters.ants,
       },
@@ -62,15 +58,11 @@ const Board = () => {
   };
 
   const handleSquareClick = useCallback(
-    (rowIndex, colIndex, whichClick) => {
+    (y, x, clickType) => {
       //first click
       if (!roundCtx.started) {
-        let clickedNeighborhood = buildNeighborhood(
-          boardState.board,
-          rowIndex,
-          colIndex
-        );
-        let [boardWithAnts, antList] = addAnts(boardState, clickedNeighborhood);
+        let [boardWithAnts, antList] = startRound(boardState, y, x);
+        console.log(boardWithAnts);
         dispatchBoard({
           type: "SET_ANTS",
           payload: {
@@ -83,42 +75,47 @@ const Board = () => {
         });
         roundCtx.set.start();
       }
-
-      let updateGrid = [...boardState.board];
-      let clickedSquare = boardState.board[rowIndex][colIndex];
-      // console.log("handling a " + whichClick + " click for:");
-      // console.log(clickedSquare);
-      let updateAction = boardHandler.routeClick(
-        clickedSquare,
-        whichClick,
-        boardState.flags
+      // console.log(rowIndex, colIndex, whichClick);
+      console.log(boardState.board[y][x]);
+      // let updateGrid = [...boardState.board];
+      let { newBoardState, gameOver } = playerMoveReducer(
+        { ...boardState },
+        { type: clickType, payload: boardState.board[y][x] }
       );
-      updateGrid[rowIndex][colIndex] = updateAction.square;
-      if (updateAction.square.revealed) {
-        //if an ant was uncovered
-        if (updateAction.square.ant) {
-          roundCtx.set.lost();
-          updateGrid = detonateAnts(updateGrid, boardState.parameters.antList);
-        }
+      // let newClickedSquare =
+      // newBoardState[clickedSquare.row][clickedSquare.col];
+      // let updateAction = clickHandler.routeClick(
+      //   clickedSquare,
+      //   whichClick,
+      //   boardState.flags
+      // );
+
+      // updateGrid[rowIndex][colIndex] = updateAction.square;
+      // if (updateAction.square.revealed) {
+      //if an ant was uncovered
+      // if (updateAction.square.ant) {
+      // if (newClickedSquare.ant) {
+      if (gameOver && newBoardState.face === faces.exploded) {
+        roundCtx.set.lost();
+        endRound.lost();
+        // updateGrid = detonateAnts(updateGrid, boardState.parameters.antList);
+      } else if (gameOver && newBoardState.face === faces.shades) {
         //if the last non-ant was uncovered
-        if (
-          checkForWin(updateGrid, boardState.parameters) &&
-          !updateAction.square.ant
-        ) {
-          updateAction.face = faces.shades;
-          roundCtx.set.won();
-        }
-        //if a square with no nearby ants was uncovered
-        if (updateAction.square.nearbyAnts === 0) {
-          updateGrid = uncoverNeighbors(updateAction.square, updateGrid);
-        }
+        // updateAction.face = faces.shades;
+        roundCtx.set.won();
+        endRound.won();
       }
+      //if a square with no nearby ants was uncovered
+      // if (updateAction.square.nearbyAnts === 0) {
+      //   updateGrid = uncoverNeighbors(updateAction.square, updateGrid);
+      // }
+      // }
       dispatchBoard({
         type: "UPDATE_BOARD",
         payload: {
-          board: updateGrid,
-          face: updateAction.face,
-          flags: updateAction.flags,
+          board: newBoardState.board,
+          face: newBoardState.face,
+          flags: newBoardState.flags,
         },
       });
     },
@@ -137,26 +134,32 @@ const Board = () => {
     ) {
       restartRound();
     }
-  }, [paramCtx.level, boardState.level, boardState.board, roundCtx, restartRound]);
+  }, [
+    paramCtx.level,
+    boardState.level,
+    boardState.board,
+    roundCtx,
+    restartRound,
+  ]);
   return (
     <article className={styles.gameWrapper}>
-        <Controls
-          startGame={onStart}
-          inProgress={roundCtx.ready}
-          face={boardState.face}
-          flags={boardState.flags}
-          firstClick={roundCtx.started}
-        />
-        <section className={styles.boardWrapper}>
-          {boardState.board ? (
-            <RowWrapper
-              boardGrid={boardState.board}
-              handleSquareClick={handleSquareClick}
-              setFace={handleFaceChange}
-              gameInProgress={roundCtx.ready}
-            />
-          ) : null}
-        </section>
+      <Controls
+        startGame={onStart}
+        inProgress={roundCtx.ready}
+        face={boardState.face}
+        flags={boardState.flags}
+        firstClick={roundCtx.started}
+      />
+      <section className={styles.boardWrapper}>
+        {boardState.board ? (
+          <RowWrapper
+            boardGrid={boardState.board}
+            handleSquareClick={handleSquareClick}
+            setFace={handleFaceChange}
+            gameInProgress={roundCtx.ready}
+          />
+        ) : null}
+      </section>
     </article>
   );
 };

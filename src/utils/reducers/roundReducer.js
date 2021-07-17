@@ -8,7 +8,7 @@ const roundReducer = (state, action) => {
       return { ...state, started: true };
     case "WON":
     case "LOST":
-        console.log("ROUND REDUCER won/last")
+        console.log("ROUND REDUCER won/lost")
       return { ...state, ready: false };
     case "RESET":
         console.log("ROUND REDUCER reset")

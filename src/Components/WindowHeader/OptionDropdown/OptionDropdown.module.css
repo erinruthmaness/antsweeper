@@ -22,21 +22,26 @@
   animation: delayRender 0.4s ease-in;
 }
 
-.dropdown__section>li {
+.dropdown__section a {
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown__section li {
   padding: .2em 1.5em;
 }
 
-.dropdown__section>li:first-letter {
+.dropdown__section li:first-letter {
   text-decoration: underline;
 }
 
-.dropdown__section>li:hover {
+.dropdown__section li:hover {
   cursor: pointer;
   background-color: #0000aa;
   color: white;
 }
 
-.dropdown__section>li.--selected {
+.dropdown__section li.--selected {
   padding-left: .5em;
 }
 

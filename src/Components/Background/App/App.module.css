@@ -1,3 +1,5 @@
-/* .bg {
-  text-align: center;
-} */
+.window_container {
+  margin: auto;
+  padding: 2em;
+  width: fit-content;
+}

@@ -27,10 +27,14 @@ body {
 }
 
 button {
+    --button-box-shadow-color1: var(--w98-lightest-gray);
+    --button-box-shadow-color2: black;
+    --button-box-shadow-color3: black;
+    --button-box-shadow-color4: black;
     font-size: var(--w98-font-size);
     border: var(--w98-border);
     border-color: var(--w98-border-color);
-    box-shadow: inset 1px 1px var(--w98-lightest-gray), 1px 0 #000, 0 1px #000, 1px 1px #000;
+    box-shadow: inset 1px 1px var(--button-box-shadow-color1), 1px 0 var(--button-box-shadow-color2), 0 1px var(--button-box-shadow-color3), 1px 1px var(--button-box-shadow-color4);
     background-color: var(--w98-bg-gray);
     font-family: var(--w98-font-family-default);
     letter-spacing: -.05em;

@@ -9,8 +9,7 @@ I've been working on this project casually in my free time as I study my way bac
 
 ## Planned future additions include:
 
-* Redesigned dropdown menu functionality using a React portal instead of/in addition to a context hook
-* Added accessible functionality for keyboard-only users
+* Accessible functionality for keyboard-only users
 * Reorganization of the "logic" files
 * "?" indicator as well as flag for squares of which the user is unsure
 * User's highest score functionality using localstorage

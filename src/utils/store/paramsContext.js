@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import levels from "./initialState/paramLevels";
 import { RoundCtxProvider } from "./roundContext";
-import { OverlayCtxProvider } from "./overlayContext";
+import { WindowCtxProvider } from "./windowContext";
 
 //for IDE completion
 const defaultContext = {
@@ -29,9 +29,9 @@ export const ParamCtxProvider = (props) => {
       }}
     >
       <RoundCtxProvider>
-        <OverlayCtxProvider>
+        <WindowCtxProvider>
         {props.children}
-        </OverlayCtxProvider>
+        </WindowCtxProvider>
       </RoundCtxProvider>
     </paramContext.Provider>
   );

@@ -40,6 +40,18 @@
     text-align: center;
     padding: 0;
     padding-bottom: .2em;
+    cursor: pointer;
+}
+
+.titleBar__right button:disabled {
+    /* --button-box-shadow-color1: var(--w98-light-gray); */
+    --button-box-shadow-color2: var(--w98-darkest-gray);
+    --button-box-shadow-color3: var(--w98-darkest-gray);
+    --button-box-shadow-color4: var(--w98-darkest-gray);
+    border-bottom-color: var(--w98-dk-gray);
+    border-right-color: var(--w98-dk-gray);
+    background-color: var(--w98-light-gray);
+    cursor: not-allowed;
 }
 
 .titleBar__right:first-child {

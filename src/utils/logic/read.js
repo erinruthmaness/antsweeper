@@ -1,4 +1,4 @@
-import { squares, faces } from "./icons";
+import { faces } from "../../imgs/icons";
 
 // returns { which: "left"/"right", face : "[face code]"}
 export const squareHandler = {
@@ -38,79 +38,6 @@ export const squareHandler = {
       } else {
         //flag placement
         return squareHandler.squareResponse("right", faces.smiling);
-      }
-    }
-  },
-};
-
-//returns { square: {updated square}, face: [face code] }
-export const boardHandler = {
-  routeClick: (clickedSquare, whichClick, remFlags) => {
-    if (whichClick === "left") {
-      return boardHandler.leftClick(clickedSquare, remFlags);
-    } else if (whichClick === "right") {
-      return boardHandler.rightClick(clickedSquare, remFlags);
-    }
-  },
-  leftClick: (sq, remFlags) => {
-    if (sq.flagged || sq.revealed) {
-      return { square: sq, face: faces.smiling };
-    } else {
-      if (sq.ant) {
-        return {
-          square: {
-            ...sq,
-            display: squares.ant,
-            revealed: true,
-          },
-          face: faces.exploded,
-          flags: remFlags,
-        };
-      } else {
-        return {
-          square: {
-            ...sq,
-            display: sq.nearbyAnts === 0 ? "" : sq.nearbyAnts,
-            revealed: true,
-          },
-          face: faces.smiling,
-          flags: remFlags,
-        };
-      }
-    }
-  },
-  rightClick: (sq, remFlags) => {
-    //removing a flag
-    if (sq.flagged) {
-      return {
-        square: {
-          ...sq,
-          display: squares.unclicked,
-          revealed: false,
-          flagged: false,
-        },
-        face: faces.smiling,
-        flags: remFlags + 1,
-      };
-    } else {
-      if (remFlags > 0) {
-        return {
-          square: {
-            ...sq,
-            display: squares.flag,
-            revealed: false,
-            flagged: true,
-          },
-          face: faces.smiling,
-          flags: remFlags - 1,
-        };
-      } else {
-        //player can't place more flags than ants
-        return {
-          square: { ...sq },
-          face: faces.smiling,
-          flags: remFlags,
-        };
       }
     }
   },

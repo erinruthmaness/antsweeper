@@ -1,4 +1,4 @@
-import { faces } from "../logic/icons";
+import { faces } from "../../imgs/icons";
 
 const boardReducer = (state, action) => {
   switch (action.type) {

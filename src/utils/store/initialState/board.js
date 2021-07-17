@@ -1,4 +1,4 @@
-import { faces } from '../../logic/icons';
+import { faces } from '../../../imgs/icons';
 
 const getInitialBoard = (paramContextOBJ) => {
   return {

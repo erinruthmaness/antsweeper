@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 import paramContext from "../../../utils/store/paramsContext";
 import roundContext from "../../../utils/store/roundContext";
-import overlayContext from "../../../utils/store/overlayContext";
+import windowContext from "../../../utils/store/windowContext";
 import levels from "../../../utils/store/initialState/paramLevels";
 import styles from "../OptionDropdown/OptionDropdown.module.css";
 // import styles from "./GameMenu.module.css";
@@ -10,15 +10,15 @@ const GameMenu = (props) => {
   const gameLevels = ["beginner", "intermediate", "expert"];
   const paramCtx = useContext(paramContext);
   const roundCtx = useContext(roundContext);
-  const overlayCtx = useContext(overlayContext);
+  const windowCtx = useContext(windowContext);
 
   const handleSelect = (lvl) => {
-    overlayCtx.hide();
+    windowCtx.overlay.hide();
     paramCtx.setParameters(levels[lvl]);
   };
 
   const handleReset = () => {
-    overlayCtx.hide();
+    windowCtx.overlay.hide();
     roundCtx.set.reset();
   };
 

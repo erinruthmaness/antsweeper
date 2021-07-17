@@ -88,7 +88,11 @@ function Square(props) {
     //because that should stay the same across the game
     clickType = "left";
     touchLength = 0;
-    props.onClick(props.sq.row, props.sq.col, leftOrRight);
+    props.onClick(
+      props.sq.y,
+      props.sq.x,
+      leftOrRight.toUpperCase() + "_CLICK"
+    );
   };
 
   return (
@@ -97,7 +101,11 @@ function Square(props) {
         ${styles.square}
         ${props.sq.revealed && styles["square--clicked"]} 
         ${styles[assessDigit("nearbys", props.sq.nearbyAnts)]}
-        ${(props.sq.revealed && props.sq.ant && !props.sq.unclickedAnt) ? styles.firstAnt : null} 
+        ${
+          props.sq.revealed && props.sq.ant && !props.sq.unclickedAnt
+            ? styles.firstAnt
+            : null
+        } 
       `}
       onMouseDown={(e) => parseClick(e, "down")}
       onMouseUp={!wasTouched ? (e) => parseClick(e, "up") : undefined}
