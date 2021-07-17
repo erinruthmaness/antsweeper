@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/antsweeper/static/css/main.83b50a41.chunk.css",
-    "main.js": "/antsweeper/static/js/main.adc9ad6e.chunk.js",
-    "main.js.map": "/antsweeper/static/js/main.adc9ad6e.chunk.js.map",
+    "main.css": "/antsweeper/static/css/main.0aaa3b64.chunk.css",
+    "main.js": "/antsweeper/static/js/main.1cf7f595.chunk.js",
+    "main.js.map": "/antsweeper/static/js/main.1cf7f595.chunk.js.map",
     "runtime-main.js": "/antsweeper/static/js/runtime-main.a986fe7f.js",
     "runtime-main.js.map": "/antsweeper/static/js/runtime-main.a986fe7f.js.map",
-    "static/js/2.fb1ab952.chunk.js": "/antsweeper/static/js/2.fb1ab952.chunk.js",
-    "static/js/2.fb1ab952.chunk.js.map": "/antsweeper/static/js/2.fb1ab952.chunk.js.map",
+    "static/js/2.7a947a1c.chunk.js": "/antsweeper/static/js/2.7a947a1c.chunk.js",
+    "static/js/2.7a947a1c.chunk.js.map": "/antsweeper/static/js/2.7a947a1c.chunk.js.map",
     "index.html": "/antsweeper/index.html",
-    "static/css/main.83b50a41.chunk.css.map": "/antsweeper/static/css/main.83b50a41.chunk.css.map",
-    "static/js/2.fb1ab952.chunk.js.LICENSE.txt": "/antsweeper/static/js/2.fb1ab952.chunk.js.LICENSE.txt",
+    "static/css/main.0aaa3b64.chunk.css.map": "/antsweeper/static/css/main.0aaa3b64.chunk.css.map",
+    "static/js/2.7a947a1c.chunk.js.LICENSE.txt": "/antsweeper/static/js/2.7a947a1c.chunk.js.LICENSE.txt",
     "static/media/win98Logo.c4af9ed5.png": "/antsweeper/static/media/win98Logo.c4af9ed5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a986fe7f.js",
-    "static/js/2.fb1ab952.chunk.js",
-    "static/css/main.83b50a41.chunk.css",
-    "static/js/main.adc9ad6e.chunk.js"
+    "static/js/2.7a947a1c.chunk.js",
+    "static/css/main.0aaa3b64.chunk.css",
+    "static/js/main.1cf7f595.chunk.js"
   ]
 }
