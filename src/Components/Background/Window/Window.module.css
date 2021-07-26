@@ -1,20 +1,16 @@
 .window {
-    width: fit-content;
-    height: fit-content;
     max-height: 100vh;
     border: var(--w98-border);
     border-color: var(--w98-border-color);
     box-shadow: inset 1px 1px white;
     background-color: var(--w98-light-gray);
     padding: var(--w98-card-padding);
+    position: relative;
 }
 
 .window--minimizing {
-    /* max-height: .5em; */
-    /* width: 4em; */
     position: fixed;
     animation: minimize 1s ease-in;
-    /* transition: max-height 1s ease-out, width 1s ease-out; */
 }
 
 .window--maximizing {

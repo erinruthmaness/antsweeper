@@ -8,11 +8,18 @@
     font-size: 1.25em;
 }
 
+.titleBar.titleBar--inactive {
+    opacity: .8;
+    background-color: var(--w98-darkest-gray);
+    color: var(--w98-bg-gray);
+}
+
 .titleBar__left {
     margin-left: .2em;
 }
 
 .titleBar__left h1 {
+    line-height: 2;
     display: inline-block;
     margin-left: .1em;
     font-family: var(--w98-font-family-default);
@@ -34,26 +41,19 @@
     border-width: 2px;
     border-right-color: var(--w98-darkest-gray);
     border-bottom-color: var(--w98-darkest-gray);
-    height: 1.6em;
-    width: 1.6em;
-    font-size: .9em;
+    font-size: 1rem;
+    font-weight: bold;
     text-align: center;
-    padding: 0;
-    padding-bottom: .2em;
+    padding: 0 .35em;
     cursor: pointer;
 }
 
 .titleBar__right button:disabled {
-    /* --button-box-shadow-color1: var(--w98-light-gray); */
-    --button-box-shadow-color2: var(--w98-darkest-gray);
-    --button-box-shadow-color3: var(--w98-darkest-gray);
-    --button-box-shadow-color4: var(--w98-darkest-gray);
-    border-bottom-color: var(--w98-dk-gray);
-    border-right-color: var(--w98-dk-gray);
-    background-color: var(--w98-light-gray);
+    padding: 0.07em 0.4em;
     cursor: not-allowed;
+    margin-bottom: 2px;
 }
 
-.titleBar__right:first-child {
-    font-weight: bold;
+.titleBar__right button.--minimize {
+    font-size: 1.25rem;
 }

@@ -1,10 +1,10 @@
 :root {
-    --w98-lightest-gray: #e0e0e0;
-    --w98-light-gray: #c3c7cb;
-    --w98-dk-gray: #868a8e;
-    --w98-darkest-gray: #4e4e4e;
-    --w98-bg-gray: #c0c0c0;
-    --w98-bluescreen-blue: #0000aa;
+    --w98-lightest-gray: rgb(224, 224, 224);
+    --w98-light-gray: rgb(195, 199, 203);
+    --w98-dk-gray: rgb(134, 138, 142);
+    --w98-darkest-gray: rgb(78, 78, 78);
+    --w98-bg-gray: rgb(192, 192, 192);
+    --w98-bluescreen-blue: rgb(0, 0, 170);
     --w98-font-size: 12px;
     --w98-font-family-close: 'px sans nouveaux', sans-serif;
     --w98-letterspace-close: -.025em;

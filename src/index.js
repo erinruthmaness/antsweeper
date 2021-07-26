@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import "./style/index.css";
 import "./style/windows98.css";
 import "./style/levels.css";
-import { ParamCtxProvider } from "./utils/store/paramsContext";
+import { WindowCtxProvider } from "./utils/store/windowContext";
 import App from "./Components/Background/App/App";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ParamCtxProvider>
-      <App />
-    </ParamCtxProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<WindowCtxProvider>
+			<App />
+		</WindowCtxProvider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
