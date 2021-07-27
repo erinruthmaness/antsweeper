@@ -4,12 +4,10 @@ const useDragMove = () => {
 	const [translate, setTranslate] = useState({ x: 0, y: 0 });
 	const [isDragging, setIsDragging] = useState(false);
 	const grab = () => {
-		console.log("dragmove hook grabbing");
 		setIsDragging(true);
 	};
 	const drag = (e) => {
 		if (isDragging) {
-			console.log("dragmove hook is dragging");
 			const minMargin = 20;
 			if (
 				e.clientY > minMargin &&
@@ -32,7 +30,6 @@ const useDragMove = () => {
 		}
 	};
 	const drop = () => {
-		console.log("dragmove hook dropping");
 		setIsDragging(false);
 	};
 

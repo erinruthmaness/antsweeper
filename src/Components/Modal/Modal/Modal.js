@@ -1,19 +1,30 @@
 import useDragMove from "../../../hooks/useDragMove";
+import useTrapFocus from "../../../hooks/useTrapFocus";
+import keyHandler from "../../../utils/logic/keyHandler";
 
 import styles from "./Modal.module.css";
 import titleStyles from "../../WindowHeader/TitleBar/TitleBar.module.css";
 
 const Modal = (props) => {
 	const modalDrag = useDragMove();
-	// { isDragging, grab, drag, drop, translate }
 	const cursorStyle = modalDrag.isDragging ? "grabbing" : "grab";
+
+	const trapFocus = useTrapFocus();
+
+	const handleModalKeypress = (e) => {
+		keyHandler("Escape", props.dismiss, null, e);
+		keyHandler("Tab", trapFocus.next, trapFocus.previous, e);
+	};
 
 	return (
 		<article
-			className={styles.modal}
+			ref={trapFocus.ref}
+			className={`focusable ${styles.modal}`}
 			style={{
 				transform: `translateX(${modalDrag.translate.x}px) translateY(${modalDrag.translate.y}px)`,
 			}}
+			onKeyDown={handleModalKeypress}
+			tabIndex={0}
 		>
 			<nav
 				className={titleStyles.titleBar}

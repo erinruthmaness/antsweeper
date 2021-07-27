@@ -11,7 +11,7 @@ I've been working on this project casually in my free time as I study my way bac
 
 * Accessible functionality for keyboard-only users
 * Reorganization of the "logic" files
+* Combining params and round context into "game context"
 * "?" indicator as well as flag for squares of which the user is unsure
 * User's highest score functionality using localstorage
-* A popup with the information in this readMe triggered from within the Help menu
 * And maybe... a backend element that preserves all high scores and takes a high scorer's name

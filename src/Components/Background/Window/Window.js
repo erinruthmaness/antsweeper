@@ -1,4 +1,4 @@
-import Overlay from "../Overlay/Overlay";
+import Overlay from "../../Modal/Overlay/Overlay";
 import MenuBar from "../../WindowHeader/MenuBar/MenuBar";
 import { Fragment, useContext, useCallback, useState } from "react";
 import windowContext from "../../../utils/store/windowContext";
@@ -42,9 +42,10 @@ const Window = () => {
 
   return (
     <main
-      className={`${styles.window} ${animation ? styles[animation] : ""} ${
+      className={`focusable ${styles.window} ${animation ? styles[animation] : ""} ${
         windowCtx.minimize.isMinimized ? styles["window--minimized"] : ""
       }`}
+      tabIndex={0}
       style={{
         transform: windowCtx.minimize.isMinimized
           ? "none"

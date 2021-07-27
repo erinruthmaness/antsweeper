@@ -39,16 +39,15 @@ export const WindowCtxProvider = (props) => {
 	const hide = () => {
 		if (overlayState) {
 			setOverlayState(false);
-			console.log("WINDOW CONTEXT hiding overlay");
 		}
 		if (overlayContent) {
 			setOverlayContent(null);
 		}
+		// document.getElementsByTagName("main").focus();
 	};
 	const show = () => {
 		if (!overlayState) {
 			setOverlayState(true);
-			console.log("WINDOW CONTEXT showing overlay");
 		}
 	};
 	const modal = (title, content) => {
@@ -56,7 +55,6 @@ export const WindowCtxProvider = (props) => {
 		if (!overlayState) {
 			show();
 		}
-		console.log("WINDOW CONTEXT showing modal");
 	};
 	//------minimize------
 	const [isMinimized, setIsMinimized] = useState(false);

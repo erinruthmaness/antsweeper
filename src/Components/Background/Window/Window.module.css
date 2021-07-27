@@ -8,6 +8,11 @@
     position: relative;
 }
 
+.window:focus {
+    border-color: black;
+    border-style: dotted;
+}
+
 .window--minimizing {
     position: fixed;
     animation: minimize 1s ease-in;
