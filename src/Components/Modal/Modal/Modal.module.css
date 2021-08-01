@@ -37,6 +37,11 @@
     font-weight: bold;
 }
 
+.modal__text h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
 .modal__text p {
     padding: .25em 0;
 }

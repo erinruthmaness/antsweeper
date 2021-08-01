@@ -1,6 +1,7 @@
 import { Fragment, useContext } from "react";
 import windowContext from "../../../utils/store/windowContext";
 import About from "../../Modal/About/About";
+import ExternalLinkIcon from "../ExternalLinkIcon/ExternalLinkIcon";
 
 import styles from "../OptionDropdown/OptionDropdown.module.css";
 
@@ -19,13 +20,17 @@ const HelpMenu = () => {
 				</a>
 			</ul>
 			<ul className={styles.dropdown__section}>
-				<li onClick={handleModal}>What is Antsweeper?</li>
+				<li onClick={handleModal} aria-label="What is Antsweeper?">
+					What is Antsweeper?
+				</li>
 				<a
 					target="_blank"
 					rel="noreferrer"
 					href="http://www.minesweeper.info/wiki/Windows_Minesweeper"
 				>
-					<li>About Minesweeper...</li>
+					<li aria-label="About Minesweeper (opens in new window)">
+						About Minesweeper... <ExternalLinkIcon />
+					</li>
 				</a>
 			</ul>
 		</Fragment>

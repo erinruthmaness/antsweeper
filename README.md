@@ -13,5 +13,6 @@ I've been working on this project casually in my free time as I study my way bac
 * Reorganization of the "logic" files
 * Combining params and round context into "game context"
 * "?" indicator as well as flag for squares of which the user is unsure
-* User's highest score functionality using localstorage
+* Ability for user to swap ants for other icons
+* User's highest score functionality (possibly using localstorage)
 * And maybe... a backend element that preserves all high scores and takes a high scorer's name
