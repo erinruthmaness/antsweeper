@@ -1,6 +1,7 @@
-const initialRound = {
-  ready: false,
-  started: false,
+const defaultRoundState = {
+    ready: false,
+    started: false,
+    antList: [],
 };
 
-export default initialRound;
+export default defaultRoundState;

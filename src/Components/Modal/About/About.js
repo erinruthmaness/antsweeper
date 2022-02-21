@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import keyHandler from "../../../utils/logic/keyHandler";
+import readKeypress from "utils/logic/user/readKeypress";
 import styles from "./About.module.css";
 
 const About = () => {
@@ -15,7 +15,7 @@ const About = () => {
 	};
 
 	const keyPressHandler = (e) => {
-		keyHandler("Enter", copyText, null, e);
+		readKeypress("Enter", copyText, null, e);
 	};
 
 	return (

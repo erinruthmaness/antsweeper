@@ -1,46 +1,48 @@
 import React, { useReducer } from "react";
-import roundReducer from "../reducers/roundReducer";
-import initialRound from "./initialState/round";
+import roundReducer from "utils/reducers/roundReducer";
+import defaultRoundState from "utils/store/initialState/round";
 
 //for IDE completion
 const defaultContext = {
-  ready: null,
-  started: null,
-  set: {
-    ready: () => {},
-    start: () => {},
-    lost: () => {},
-    won: () => {},
-    reset: () => {},
-  },
+    ...defaultRoundState,
+    set: {
+        ready: () => {},
+        start: () => {},
+        lost: () => {},
+        won: () => {},
+        reset: () => {},
+    },
+    dispatch: (action) => {},
 };
 const roundContext = React.createContext(defaultContext);
 export default roundContext;
 
 export const RoundCtxProvider = (props) => {
-  const [roundState, dispatchRound] = useReducer(roundReducer, initialRound);
+    const [roundState, dispatchRound] = useReducer(roundReducer, defaultRoundState);
 
-  const set = {
-    ready: () => {
-      dispatchRound({ type: "BOARD_SET" });
-    },
-    start: () => {
-      dispatchRound({ type: "START_ROUND" });
-    },
-    lost: () => {
-      dispatchRound({ type: "LOST" });
-    },
-    won: () => {
-      dispatchRound({ type: "WON" });
-    },
-    reset: () => {
-      dispatchRound({ type: "RESET", payload: { ...initialRound } });
-    },
-  };
+    const set = {
+        ready: () => {
+            dispatchRound({ type: "BOARD_SET" });
+        },
+        start: () => {
+            dispatchRound({ type: "START_ROUND" });
+        },
+        lost: () => {
+            dispatchRound({ type: "LOST" });
+        },
+        won: () => {
+            dispatchRound({ type: "WON" });
+        },
+        reset: () => {
+            dispatchRound({ type: "RESET", payload: { ...defaultRoundState } });
+        },
+    };
 
-  return (
-    <roundContext.Provider value={{ ...roundState, set: set }}>
-      {props.children}
-    </roundContext.Provider>
-  );
+    const dispatch = (action) => dispatchRound(action);
+
+    return (
+        <roundContext.Provider value={{ ...roundState, set, dispatch }}>
+            {props.children}
+        </roundContext.Provider>
+    );
 };

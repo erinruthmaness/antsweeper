@@ -1,27 +1,28 @@
-import Window from "../Window/Window";
-import Footer from "../Footer/Footer";
+import Window from "Components/Window/Window";
+import Footer from "Components/Background/Footer/Footer";
 
-import { useContext, useEffect } from "react";
-import paramContext from "../../../utils/store/paramsContext";
-import "../../../style/levels.css";
+import { useContext } from "react";
+import paramContext from "utils/store/paramsContext";
+import userContext from "utils/store/userContext";
+import "style/levels.css";
 
 import styles from "./App.module.css";
-import userContext from "../../../utils/store/userContext";
 
 function App() {
-	const paramCtx = useContext(paramContext);
-	const userCtx = useContext(userContext);
-	useEffect(() => {
-		document.addEventListener("click", userCtx.click.set);
-		document.addEventListener("keypress", userCtx.key.set);
-	}, [userCtx]);
+    const paramCtx = useContext(paramContext);
+    const userCtx = useContext(userContext);
+    const handleClick = (e) => userCtx.click.set(e);
+    const handleKeyPress = (e) => userCtx.key.set(e);
 
-	return (
-		<div className={`${paramCtx.level} ${styles.window_container}`}>
-			<Window />
-			<Footer />
-		</div>
-	);
+    return (
+        <div
+            className={`${paramCtx.level} ${styles.window_container}`}
+            onClick={handleClick}
+            onKeyDown={handleKeyPress}>
+            <Window />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;

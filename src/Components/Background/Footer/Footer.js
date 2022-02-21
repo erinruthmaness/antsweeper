@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import win98logo from "../../../imgs/win98Logo.png";
-import { squares } from "../../../imgs/icons";
+import win98logo from "imgs/win98Logo.png";
+import { squares } from "imgs/icons";
+import windowContext from "utils/store/windowContext";
 import styles from "./Footer.module.css";
-import windowContext from "../../../utils/store/windowContext";
 
 const Footer = () => {
   const windowCtx = useContext(windowContext);
