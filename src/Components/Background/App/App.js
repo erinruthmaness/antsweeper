@@ -2,14 +2,14 @@ import Window from "Components/Window/Window";
 import Footer from "Components/Background/Footer/Footer";
 
 import { useContext } from "react";
-import paramContext from "utils/store/paramsContext";
+import paramsContext from "utils/store/paramsContext";
 import userContext from "utils/store/userContext";
 import "style/levels.css";
 
 import styles from "./App.module.css";
 
 function App() {
-    const paramCtx = useContext(paramContext);
+    const paramCtx = useContext(paramsContext);
     const userCtx = useContext(userContext);
     const handleClick = (e) => userCtx.click.set(e);
     const handleKeyPress = (e) => userCtx.key.set(e);

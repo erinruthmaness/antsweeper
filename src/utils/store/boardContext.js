@@ -8,17 +8,17 @@ import { buildBoard } from "utils/logic/board/createBoard";
 import { readMove } from "utils/logic/move/readMove";
 
 //for IDE completion
-const defaultContext = {
-    ...defaultBoardState,
-    setFace: (newFace) => {},
-    reset: () => {},
-    clear: () => {},
-    update: (y, x, clickType) => {},
-};
-const boardContext = React.createContext(defaultContext);
-export default boardContext;
+// const defaultContext = {
+//     ...defaultBoardState,
+//     setFace: (newFace) => {},
+//     reset: () => {},
+//     clear: () => {},
+//     update: (y, x, clickType) => {},
+// };
 
-export const BoardCtxProvider = (props) => {
+const boardContext = React.createContext();
+
+const BoardCtxProvider = ({ overrideValue, children }) => {
     const paramCtx = useContext(paramsContext);
     const roundCtx = useContext(roundContext);
     const [boardState, dispatchBoard] = useReducer(boardReducer, getInitialBoard(paramCtx));
@@ -53,15 +53,19 @@ export const BoardCtxProvider = (props) => {
     );
 
     return (
-        <boardContext.Provider
-            value={{
-                ...boardState,
-                setFace,
-                reset,
-                clear,
-                update,
-            }}>
-            {props.children}
+        <boardContext.Provider value={{ ...boardState, setFace, reset, clear, update, ...overrideValue }}>
+            {children}
         </boardContext.Provider>
     );
 };
+
+const useBoardContext = () => {
+    const boardCtx = React.useContext(boardContext);
+    if (!boardCtx) {
+        throw new Error("Cannot use 'useBoard' outside of a BoardCtxProvider.");
+    }
+
+    return boardCtx;
+};
+
+export {BoardCtxProvider, useBoardContext}

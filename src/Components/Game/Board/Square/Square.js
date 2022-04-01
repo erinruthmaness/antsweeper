@@ -1,5 +1,5 @@
-import { useRef, useContext } from "react";
-import boardContext from "utils/store/boardContext";
+import { useRef } from "react";
+import { useBoardContext } from "utils/store/boardContext";
 import PropTypes from "prop-types";
 import { assessDigit } from "utils/logic/helpers";
 import { getSqResponse, sqState } from "./utils";
@@ -7,7 +7,7 @@ import styles from "./Square.module.css";
 
 const Square = (props) => {
     const countRef = useRef();
-    const boardCtx = useContext(boardContext);
+    const boardCtx = useBoardContext();
 
     const parseClick = (event, clickDirection) => {
         if (props.gameOver) {
@@ -15,20 +15,20 @@ const Square = (props) => {
             return;
         }
 
-        const isFlaggedSquare = props.sq.flagged && event.nativeEvent.which === 1;
+        const isFlaggedSquare = props.sq.flagged && event.button === 1;
         const doNothing = sqState.current.wasTouched || props.sq.revealed || isFlaggedSquare;
 
         if (doNothing) {
             return;
         } else if (clickDirection === "down") {
-            const { which, face } = getSqResponse.mouseDown(event.nativeEvent.which, props);
+            const { which, face } = getSqResponse.mouseDown(event.button, props);
             boardCtx.setFace(face);
 
             sqState.current.wasClicked = true;
             sqState.current.clickType = which;
         } else if (clickDirection === "up") {
             if (!sqState.current.wasTouched) {
-                sqState.update(sqState.current.clickType, props.onClick, props.sq.x, props.sq.y);
+                sqState.update(sqState.current.clickType, boardCtx.update, props.sq.x, props.sq.y);
             }
         }
     };
@@ -57,14 +57,16 @@ const Square = (props) => {
 
                 return;
             } else {
-                sqState.update(sqState.current.clickType, props.onClick, props.sq.x, props.sq.y);
+                sqState.update(sqState.current.clickType, boardCtx.update, props.sq.x, props.sq.y);
             }
         }
     };
 
     return (
         <button
-            id={props.sq.id}
+            id={props.sq.key}
+            aria-label={props.sq.key}
+            value={getSquareValue(props.sq)}
             className={`
         ${styles.square}
         ${props.sq.revealed && styles["square--clicked"]} 
@@ -76,18 +78,32 @@ const Square = (props) => {
             onTouchStart={() => parseTouch("start")}
             onTouchEnd={!sqState.current.wasClicked ? () => parseTouch("end") : undefined}
             onContextMenu={(e) => e.preventDefault()}>
-            {Array.isArray(props.sq.display)
-                ? String.fromCharCode(props.sq.display[0], props.sq.display[1])
-                : props.sq.display}
+            {getSquareContents(props.sq.display)}
         </button>
     );
 };
 
+function getSquareContents(squarePropsDisplay) {
+    return Array.isArray(squarePropsDisplay)
+        ? String.fromCharCode(squarePropsDisplay[0], squarePropsDisplay[1])
+        : squarePropsDisplay;
+}
+
+function getSquareValue({ revealed, flagged, ant, display }) {
+    if (revealed && !ant) {
+        return display ? `${display} ants nearby` : "0 ants nearby";
+    } else if (flagged) {
+        return "flagged";
+    } else if (ant) {
+        return "ANT!";
+    } else {
+        return "unknown";
+    }
+}
+
 Square.propTypes = {
-    changeFace: PropTypes.func,
     gameOver: PropTypes.bool,
     id: PropTypes.string,
-    onClick: PropTypes.func,
     sq: PropTypes.shape({
         ant: PropTypes.bool,
         display: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),

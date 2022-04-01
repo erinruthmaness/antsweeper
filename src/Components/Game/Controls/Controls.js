@@ -10,7 +10,6 @@ const Controls = (props) => {
 
     const startGameHandler = () => {
         setClock(0);
-        // setClockStarted(true);
         props.startGame();
     };
 
@@ -41,12 +40,29 @@ const Controls = (props) => {
         };
     }, [clock, clockStarted, props.firstClick, props.inProgress]);
 
+    const remainingFlags = props.inProgress || clockStarted ? props.flags : "off";
+    const timeElapsed = props.inProgress || clockStarted ? clock : "off";
+
     return (
-        <div className={styles.controls}>
-            <CalcScreen id={"flags"} display={props.inProgress || clockStarted ? props.flags : "off"} />
+        <header className={styles.controls}>
+            <CalcScreen
+                id={"flags"}
+                display={remainingFlags}
+                role={"progressbar"}
+                aria-live={"polite"}
+                aria-valuemin={0}
+                aria-valuemax={props.maxFlags}
+                aria-valuenow={remainingFlags}
+            />
             <FaceButton onClick={startGameHandler} face={props.face} />
-            <CalcScreen id={"timer"} display={props.inProgress || clockStarted ? clock : "off"} />
-        </div>
+            <CalcScreen
+                id={"timer"}
+                display={timeElapsed}
+                role={"timer"}
+                aria-live={"off"}
+                aria-roledescription={`elapsed time is ${timeElapsed} seconds`}
+            />
+        </header>
     );
 };
 
@@ -54,6 +70,7 @@ Controls.propTypes = {
     face: PropTypes.arrayOf(PropTypes.string),
     firstClick: PropTypes.bool,
     flags: PropTypes.number,
+    maxFlags: PropTypes.number,
     inProgress: PropTypes.bool,
     startGame: PropTypes.func,
 };

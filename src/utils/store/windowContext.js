@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RoundCtxProvider } from "./roundContext";
-import { ParamCtxProvider } from "./paramsContext";
+import { ParamsCtxProvider } from "./paramsContext";
 import { UserCtxProvider } from "./userContext";
 import { BoardCtxProvider } from "./boardContext";
 import useDragMove from "hooks/useDragMove";
@@ -84,13 +84,13 @@ export const WindowCtxProvider = (props) => {
                     up,
                 },
             }}>
-            <ParamCtxProvider>
+            <ParamsCtxProvider>
                 <RoundCtxProvider>
                     <BoardCtxProvider>
                         <UserCtxProvider>{props.children}</UserCtxProvider>
                     </BoardCtxProvider>
                 </RoundCtxProvider>
-            </ParamCtxProvider>
+            </ParamsCtxProvider>
         </windowContext.Provider>
     );
 };

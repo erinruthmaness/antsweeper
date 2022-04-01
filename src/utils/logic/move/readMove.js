@@ -2,7 +2,7 @@ import * as roundUtils from "utils/logic/round/updateRound";
 import { firstClick } from "utils/logic/board/createBoard";
 import { moveReducer } from "utils/reducers/moveReducer";
 
-export const readMove = ({ y, x, clickType, isFirstClick = false }, boardState, roundState) => {
+export const readMove = ({ y, x, clickType }, boardState, roundState) => {
     let boardPayload = { ...boardState };
     let roundAction = { type: undefined };
 
@@ -10,13 +10,13 @@ export const readMove = ({ y, x, clickType, isFirstClick = false }, boardState, 
         const { board, antList } = firstClick(boardState, y, x);
         boardPayload.board = board;
         roundAction.payload = antList;
-        roundAction.type = "START_ROUND";
+        roundAction.type = "start";
     }
     const boardParams = {
         rows: boardState.board.length,
         cols: boardState.board[0].length,
-        numAnts: boardState.flags,
-        antList: roundState.started ? roundState.antList : roundAction.payload.antList,
+        antList: roundState.started ? roundState.antList : roundAction.payload,
+        ants: roundState.started ? roundState.antList.length : boardState.flags,
     };
     const { newBoardState, gameOver, gameWon } = moveReducer({ ...boardPayload }, boardParams, {
         type: clickType,
@@ -27,10 +27,10 @@ export const readMove = ({ y, x, clickType, isFirstClick = false }, boardState, 
 
     if (gameOver) {
         if (gameWon) {
-            roundAction.type = "WON";
+            roundAction.type = "won";
             roundUtils.end.won();
         } else {
-            roundAction.type = "LOST";
+            roundAction.type = "lost";
             roundUtils.end.lost();
         }
     }

@@ -6,10 +6,10 @@ const defaultContext = {
     ...defaultParams,
     setParameters: (string) => {},
 };
-const paramContext = React.createContext(defaultContext);
-export default paramContext;
+const paramsContext = React.createContext(defaultContext);
+export default paramsContext;
 
-export const ParamCtxProvider = (props) => {
+export const ParamsCtxProvider = (props) => {
     const [params, setParams] = useState(defaultParams);
 
     const setParameters = (paramString) => {
@@ -18,12 +18,12 @@ export const ParamCtxProvider = (props) => {
     };
 
     return (
-        <paramContext.Provider
+        <paramsContext.Provider
             value={{
                 ...params,
                 setParameters,
             }}>
             {props.children}
-        </paramContext.Provider>
+        </paramsContext.Provider>
     );
 };

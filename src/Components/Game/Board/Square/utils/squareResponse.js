@@ -24,8 +24,8 @@ export const touchEnd = (count) => {
     }
 };
 
-export const mouseDown = (whichNum, squareProps) => {
-    if (whichNum === 1) {
+export const mouseDown = (mouseButton, squareProps) => {
+    if (mouseButton === 0) {
         //left click
         if (squareProps.flagged) {
             return squareResponse("left", faces.winking);

@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect } from "react";
 
 import paramsContext from "utils/store/paramsContext";
 import roundContext from "utils/store/roundContext";
-import boardContext from "utils/store/boardContext";
+import { useBoardContext } from "utils/store/boardContext";
 
 import Controls from "../Controls";
 import RowWrapper from "./RowWrapper";
@@ -12,7 +12,7 @@ import styles from "./Board.module.css";
 const Board = () => {
     const paramCtx = useContext(paramsContext);
     const roundCtx = useContext(roundContext);
-    const boardCtx = useContext(boardContext);
+    const boardCtx = useBoardContext();
 
     const restartRound = useCallback(() => {
         boardCtx.reset();
@@ -40,6 +40,7 @@ const Board = () => {
                 inProgress={roundCtx.ready}
                 // face={boardCtx.face}
                 flags={boardCtx.flags}
+                maxFlags={boardCtx.level.ants}
                 firstClick={roundCtx.started}
             />
             <div className={styles.boardWrapper}>
