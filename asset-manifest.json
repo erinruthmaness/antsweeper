@@ -1,21 +1,14 @@
 {
   "files": {
-    "main.css": "/antsweeper/static/css/main.116ddcf2.chunk.css",
-    "main.js": "/antsweeper/static/js/main.97c10009.chunk.js",
-    "main.js.map": "/antsweeper/static/js/main.97c10009.chunk.js.map",
-    "runtime-main.js": "/antsweeper/static/js/runtime-main.a986fe7f.js",
-    "runtime-main.js.map": "/antsweeper/static/js/runtime-main.a986fe7f.js.map",
-    "static/js/2.b6b9fdc1.chunk.js": "/antsweeper/static/js/2.b6b9fdc1.chunk.js",
-    "static/js/2.b6b9fdc1.chunk.js.map": "/antsweeper/static/js/2.b6b9fdc1.chunk.js.map",
+    "main.css": "/antsweeper/static/css/main.61dd689d.css",
+    "main.js": "/antsweeper/static/js/main.8195a889.js",
+    "static/media/win98Logo.png": "/antsweeper/static/media/win98Logo.c4af9ed57dd0ae94bca2.png",
     "index.html": "/antsweeper/index.html",
-    "static/css/main.116ddcf2.chunk.css.map": "/antsweeper/static/css/main.116ddcf2.chunk.css.map",
-    "static/js/2.b6b9fdc1.chunk.js.LICENSE.txt": "/antsweeper/static/js/2.b6b9fdc1.chunk.js.LICENSE.txt",
-    "static/media/win98Logo.c4af9ed5.png": "/antsweeper/static/media/win98Logo.c4af9ed5.png"
+    "main.61dd689d.css.map": "/antsweeper/static/css/main.61dd689d.css.map",
+    "main.8195a889.js.map": "/antsweeper/static/js/main.8195a889.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.a986fe7f.js",
-    "static/js/2.b6b9fdc1.chunk.js",
-    "static/css/main.116ddcf2.chunk.css",
-    "static/js/main.97c10009.chunk.js"
+    "static/css/main.61dd689d.css",
+    "static/js/main.8195a889.js"
   ]
 }
