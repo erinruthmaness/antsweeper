@@ -1,18 +1,16 @@
 import { useCallback, useContext, useEffect } from "react";
 
 import paramsContext from "utils/store/paramsContext";
-import roundContext from "utils/store/roundContext";
-import { useBoardContext } from "utils/store/boardContext";
+import { useGameContext } from "utils/store/boardContext";
 
 import Controls from "../Controls";
-import RowWrapper from "./RowWrapper";
+import Square from "../Square";
 
 import styles from "./Board.module.css";
 
 const Board = () => {
     const paramCtx = useContext(paramsContext);
-    const roundCtx = useContext(roundContext);
-    const boardCtx = useBoardContext();
+    const { boardCtx, roundCtx } = useGameContext();
 
     const restartRound = useCallback(() => {
         boardCtx.reset();
@@ -38,19 +36,30 @@ const Board = () => {
             <Controls
                 startGame={restartRound}
                 inProgress={roundCtx.ready}
-                // face={boardCtx.face}
                 flags={boardCtx.flags}
-                maxFlags={boardCtx.level.ants}
+                maxFlags={paramCtx.ants}
                 firstClick={roundCtx.started}
             />
-            <div className={styles.boardWrapper}>
-                {boardCtx.board ? (
-                    <RowWrapper
-                        boardGrid={boardCtx.board}
-                        handleSquareClick={handleSquareClick}
-                        gameInProgress={roundCtx.ready}
-                    />
-                ) : null}
+            <div
+                id="game-board"
+                role="grid"
+                aria-colcount={paramCtx.cols}
+                aria-rowcount={paramCtx.rows}
+                className={styles.boardWrapper}>
+                {boardCtx.board
+                    ? boardCtx.board.map((row, index) => (
+                          <div className={styles.board_row} key={`row-${index}`} role="row">
+                              {row.map((square) => (
+                                  <Square
+                                      key={square.key}
+                                      sq={square}
+                                      onClick={handleSquareClick}
+                                      gameOver={!roundCtx.ready}
+                                  />
+                              ))}
+                          </div>
+                      ))
+                    : null}
             </div>
         </article>
     );

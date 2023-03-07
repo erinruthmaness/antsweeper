@@ -16,3 +16,10 @@
   width: var(--board-size);
   height: var(--board-size);
 }
+
+.board_row {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -7,6 +7,7 @@ import styles from "./Controls.module.css";
 const Controls = (props) => {
     const [clock, setClock] = useState("off");
     const [clockStarted, setClockStarted] = useState(props.firstClick);
+    const [gameStatus, setGameStatus] = useState("Click 'start game' to begin.");
 
     const startGameHandler = () => {
         setClock(0);
@@ -40,11 +41,26 @@ const Controls = (props) => {
         };
     }, [clock, clockStarted, props.firstClick, props.inProgress]);
 
+    useEffect(() => {
+        if (!props.firstClick && props.inProgress) {
+            setGameStatus("Click a square in the grid to begin.");
+        }
+        if (props.firstClick && props.inProgress) {
+            setGameStatus("Game in progress.");
+        }
+        if (props.firstClick && !props.inProgress) {
+            setGameStatus("Game over.");
+        }
+    }, [props.inProgress, props.firstClick, setGameStatus]);
+
     const remainingFlags = props.inProgress || clockStarted ? props.flags : "off";
     const timeElapsed = props.inProgress || clockStarted ? clock : "off";
 
     return (
-        <header className={styles.controls}>
+        <header className={styles.controls} role="status">
+            <div id="game-status" data-testid="game-status" className={styles.controls__status}>
+                {gameStatus}
+            </div>
             <CalcScreen
                 id={"flags"}
                 display={remainingFlags}

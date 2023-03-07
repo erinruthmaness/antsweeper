@@ -20,8 +20,8 @@ const defaultContext = {
 const roundContext = React.createContext(defaultContext);
 export default roundContext;
 
-export const RoundCtxProvider = (props) => {
-    const [roundState, dispatchRound] = useReducer(roundReducer, defaultRoundState);
+export const RoundCtxProvider = ({ isTestMode = false, children }) => {
+    const [roundState, dispatchRound] = useReducer(roundReducer, { ...defaultRoundState, test: isTestMode });
     const [userStats, saveUserStats] = useLocalStorage(roundState.userStats);
     const paramCtx = useContext(paramContext);
 
@@ -49,7 +49,7 @@ export const RoundCtxProvider = (props) => {
 
     return (
         <roundContext.Provider value={{ ...roundState, set, dispatch, userStats, saveUserStats }}>
-            {props.children}
+            {children}
         </roundContext.Provider>
     );
 };

@@ -8,7 +8,7 @@ import { BoardCtxProvider } from "utils/store/boardContext";
 
 const AllContextProviders = ({ children }) => {
     return (
-            <RoundCtxProvider>
+            <RoundCtxProvider isTestMode={true}>
                 <UserCtxProvider>
                     <ParamsCtxProvider>
                         <BoardCtxProvider>{children}</BoardCtxProvider>

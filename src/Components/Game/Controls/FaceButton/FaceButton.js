@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
-import { useBoardContext } from "utils/store/boardContext";
+import { useGameContext } from "utils/store/boardContext";
 import styles from "./FaceButton.module.css";
 
 const FaceButton = (props) => {
-    const boardCtx = useBoardContext();
+    const { boardCtx } = useGameContext();
 
     return (
         <button
             id="face-button"
-            aria-label="startGame"
+            aria-label="start-game"
+            aria-controls="game-board"
             onClick={props.onClick}
             className={styles.faceButton}>
             {String.fromCharCode(boardCtx.face[0], boardCtx.face[1])}
