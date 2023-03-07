@@ -1,3 +1,7 @@
+.square__wrapper {
+  display: contents;
+}
+
 .square {
   /* margin: 0.02em; */
   height: var(--square-size);

@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 test("squares can be flagged", () => {
     const { getByRole } = renderWithGameContext(<Board />);
-    userEvent.click(getByRole("button", { name: "startGame" }));
+    userEvent.click(getByRole("button", { name: "start-game" }));
     userEvent.click(getByRole("button", { name: "cell-x1-y2" }), {button: 2});
     expect(getByRole("button", { name: "cell-x1-y2" })).toHaveProperty("value", "flagged");
     userEvent.click(getByRole("button", { name: "cell-x1-y2" }));

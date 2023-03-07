@@ -24,17 +24,17 @@ export const touchEnd = (count) => {
     }
 };
 
-export const mouseDown = (mouseButton, squareProps) => {
+export const mouseDown = (mouseButton, isFlagged) => {
     if (mouseButton === 0) {
         //left click
-        if (squareProps.flagged) {
+        if (isFlagged) {
             return squareResponse("left", faces.winking);
         } else {
             //yell until mouse release
             return squareResponse("left", faces.yelling);
         }
     } else {
-        if (squareProps.flagged) {
+        if (isFlagged) {
             //removing flag
             return squareResponse("right", faces.sweating);
         } else {
