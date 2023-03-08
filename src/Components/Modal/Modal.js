@@ -1,5 +1,5 @@
-import useDragMove from "hooks/useDragMove";
-import useTrapFocus from "hooks/useTrapFocus";
+import useDragMove from "common/hooks/useDragMove";
+import useTrapFocus from "common/hooks/useTrapFocus";
 import readKeypress from "utils/logic/user/readKeypress";
 
 import titleStyles from "Components/Window/MenuBar/TitleBar/TitleBar.module.css";

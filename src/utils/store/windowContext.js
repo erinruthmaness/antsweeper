@@ -3,7 +3,7 @@ import { RoundCtxProvider } from "./roundContext";
 import { ParamsCtxProvider } from "./paramsContext";
 import { UserCtxProvider } from "./userContext";
 import { BoardCtxProvider } from "./boardContext";
-import useDragMove from "hooks/useDragMove";
+import useDragMove from "common/hooks/useDragMove";
 
 //for IDE completion
 const defaultContext = {
