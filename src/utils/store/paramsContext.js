@@ -1,29 +1,32 @@
 import React, { useState } from "react";
 import { defaultParams, default as getParams } from "./initialState/params";
+import { isProd } from "utils/logic/helpers";
 
 //for IDE completion
 const defaultContext = {
-    ...defaultParams,
-    setParameters: (string) => {},
+  ...defaultParams,
+  setParameters: (string) => {},
 };
 const paramsContext = React.createContext(defaultContext);
 export default paramsContext;
 
 export const ParamsCtxProvider = (props) => {
-    const [params, setParams] = useState(defaultParams);
+  const [params, setParams] = useState(defaultParams);
 
-    const setParameters = (paramString) => {
-        setParams(getParams(paramString));
-        console.log("PARAMS CONTEXT changing params");
-    };
+  const setParameters = (paramString) => {
+    setParams(getParams(paramString));
+    if (!isProd) {
+      console.log("PARAMS CONTEXT changing params");
+    }
+  };
 
-    return (
-        <paramsContext.Provider
-            value={{
-                ...params,
-                setParameters,
-            }}>
-            {props.children}
-        </paramsContext.Provider>
-    );
+  return (
+    <paramsContext.Provider
+      value={{
+        ...params,
+        setParameters,
+      }}>
+      {props.children}
+    </paramsContext.Provider>
+  );
 };

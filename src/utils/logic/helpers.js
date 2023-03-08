@@ -1,5 +1,7 @@
 import { LEVELS as LEVEL_STRINGS } from "utils/strings";
 
+export const isProd = process.env.NODE_ENV && process.env.NODE_ENV === "prod";
+
 //the Fisher-Yates shuffle
 export const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
