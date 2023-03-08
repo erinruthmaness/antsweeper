@@ -1,7 +1,7 @@
 import React, { useReducer, useContext } from "react";
 import roundReducer from "utils/reducers/roundReducer";
 import defaultRoundState from "utils/store/initialState/round";
-import useLocalStorage from "common/hooks/useLocalStorage";
+import useLocalStorage from "hooks/useLocalStorage";
 import paramContext from "./paramsContext";
 
 //for IDE completion
