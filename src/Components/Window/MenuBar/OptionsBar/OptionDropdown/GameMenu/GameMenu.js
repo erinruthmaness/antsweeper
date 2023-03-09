@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { paramsContext, roundContext, windowContext } from "utils/store";
 import { LEVELS } from "utils/strings";
 import { capitalizeFirstLetter } from "utils/logic/helpers";
-import HighScores from "Components/Modal/HighScores";
+import BestTimes from "Components/Modal/BestTimes";
 import styles from "../../OptionDropdown/OptionDropdown.module.css";
 
 // import styles from "./GameMenu.module.css";
@@ -21,7 +21,7 @@ const GameMenu = () => {
   };
 
   const handleModal = () => {
-    windowCtx.overlay.modal("Best Times", <HighScores />);
+    windowCtx.overlay.modal("Best Times", <BestTimes />);
   };
 
   return (

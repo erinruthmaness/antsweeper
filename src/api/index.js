@@ -1,4 +1,4 @@
 import { scoresURL } from "./endpoints";
-import { useGetScores } from "./scoresActions";
+import { useScoresAPI } from "./scoresActions";
 
-export { scoresURL, useGetScores };
+export { scoresURL, useScoresAPI };

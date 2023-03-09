@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
-import HighScores from "../HighScores";
+import BestTimes from "../BestTimes";
 
 import { LEVELS } from "utils/strings";
 
@@ -10,7 +10,7 @@ const levelsCount = levelsList.length;
 afterEach(cleanup);
 
 test("renders a heading and an unordered list for each level", () => {
-  const { getAllByRole } = render(<HighScores />);
+  const { getAllByRole } = render(<BestTimes />);
   const sectionTitles = getAllByRole("heading");
   const sectionContents = getAllByRole("list");
   expect(sectionTitles).toHaveLength(levelsCount);

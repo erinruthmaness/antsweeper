@@ -1,20 +1,38 @@
-import React, { useState } from "react";
-import { defaultParams, default as getParams } from "./initialState/params";
+import React, { useEffect, useState } from "react";
 import { isProd } from "utils/logic/helpers";
+
+import { allParamsByLevel, initialLevelParams } from "./initialState/params";
+import { useScoresAPI } from "api";
 
 //for IDE completion
 const defaultContext = {
-  ...defaultParams,
-  setParameters: (string) => {},
+  ...initialLevelParams,
+  setParameters: () => {},
+  loadedScores: false,
+  scores: {},
 };
 const paramsContext = React.createContext(defaultContext);
 export default paramsContext;
 
 export const ParamsCtxProvider = (props) => {
-  const [params, setParams] = useState(defaultParams);
+  const [currentParams, setCurrentParams] = useState(initialLevelParams);
+  const { loadedScores, scores } = useScoresAPI();
 
-  const setParameters = (paramString) => {
-    setParams(getParams(paramString));
+  const currentLevelScores = scores[currentParams.level];
+
+  useEffect(() => {
+    if (loadedScores && currentLevelScores.length > 0) {
+      if (currentParams.bestTime !== currentLevelScores[0]) {
+        setCurrentParams((prevValues) => ({
+          ...prevValues,
+          bestTime: currentLevelScores[0],
+        }));
+      }
+    }
+  }, [currentParams.bestTime, loadedScores, currentLevelScores]);
+
+  const setParameters = (newLevelName) => {
+    setCurrentParams(allParamsByLevel[newLevelName]);
     if (!isProd) {
       console.log("PARAMS CONTEXT changing params");
     }
@@ -23,8 +41,10 @@ export const ParamsCtxProvider = (props) => {
   return (
     <paramsContext.Provider
       value={{
-        ...params,
+        ...currentParams,
         setParameters,
+        loadedScores,
+        scores,
       }}>
       {props.children}
     </paramsContext.Provider>
