@@ -1,21 +1,18 @@
 import React from "react";
 import { render } from "@testing-library/react";
-// import { WindowCtxProvider } from "utils/store/windowContext";
-import { RoundCtxProvider } from "utils/store/roundContext";
-import { UserCtxProvider } from "utils/store/userContext";
-import { ParamsCtxProvider } from "utils/store/paramsContext";
-import { BoardCtxProvider } from "utils/store/boardContext";
+import { Providers } from "utils/store";
 
 const AllContextProviders = ({ children }) => {
-    return (
-            <RoundCtxProvider isTestMode={true}>
-                <UserCtxProvider>
-                    <ParamsCtxProvider>
-                        <BoardCtxProvider>{children}</BoardCtxProvider>
-                    </ParamsCtxProvider>
-                </UserCtxProvider>
-            </RoundCtxProvider>
-    );
+  return (
+    <Providers.Params>
+      <Providers.Round isTestMode={true}>
+        <Providers.Board>
+          <Providers.User>{children}</Providers.User>
+        </Providers.Board>
+      </Providers.Round>
+    </Providers.Params>
+  );
 };
 
-export const renderWithGameContext = (ui, options) => render(ui, { wrapper: AllContextProviders, ...options });
+export const renderWithGameContext = (ui, options) =>
+  render(ui, { wrapper: AllContextProviders, ...options });

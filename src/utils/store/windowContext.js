@@ -1,96 +1,86 @@
 import React, { useState } from "react";
-import { RoundCtxProvider } from "./roundContext";
-import { ParamsCtxProvider } from "./paramsContext";
-import { UserCtxProvider } from "./userContext";
-import { BoardCtxProvider } from "./boardContext";
 import useDragMove from "utils/hooks/useDragMove";
 
 //for IDE completion
 const defaultContext = {
-    overlay: {
-        display: null,
-        modalContent: null,
-        hide: () => {},
-        show: () => {},
-        modal: (content) => {},
+  overlay: {
+    display: null,
+    modalContent: null,
+    hide: () => {},
+    show: () => {},
+    modal: (content) => {},
+  },
+  dragMove: {
+    translate: {
+      x: null,
+      y: null,
     },
-    dragMove: {
-        translate: {
-            x: null,
-            y: null,
-        },
-        isDragging: null,
-        grab: () => {},
-        drag: (e) => {},
-        drop: () => {},
-    },
-    minimize: {
-        isMinimized: null,
-        down: () => {},
-        up: () => {},
-    },
+    isDragging: null,
+    grab: () => {},
+    drag: (e) => {},
+    drop: () => {},
+  },
+  minimize: {
+    isMinimized: null,
+    down: () => {},
+    up: () => {},
+  },
 };
 const windowContext = React.createContext(defaultContext);
 export default windowContext;
 
 export const WindowCtxProvider = (props) => {
-    //------overlay------
-    const [overlayState, setOverlayState] = useState(false);
-    const [overlayContent, setOverlayContent] = useState(null);
-    const hide = () => {
-        if (overlayState) {
-            setOverlayState(false);
-        }
-        if (overlayContent) {
-            setOverlayContent(null);
-        }
-    };
-    const show = () => {
-        if (!overlayState) {
-            setOverlayState(true);
-        }
-    };
-    const modal = (title, content) => {
-        setOverlayContent({ title, content });
-        if (!overlayState) {
-            show();
-        }
-    };
-    //------minimize------
-    const [isMinimized, setIsMinimized] = useState(false);
-    const down = () => {
-        setIsMinimized(true);
-    };
-    const up = () => {
-        setIsMinimized(false);
-    };
-    //------dragMove------
-    const dragMove = useDragMove();
+  //------overlay------
+  const [overlayState, setOverlayState] = useState(false);
+  const [overlayContent, setOverlayContent] = useState(null);
+  const hide = () => {
+    if (overlayState) {
+      setOverlayState(false);
+    }
+    if (overlayContent) {
+      setOverlayContent(null);
+    }
+  };
+  const show = () => {
+    if (!overlayState) {
+      setOverlayState(true);
+    }
+  };
+  const modal = (title, content) => {
+    setOverlayContent({ title, content });
+    if (!overlayState) {
+      show();
+    }
+  };
+  //------minimize------
+  const [isMinimized, setIsMinimized] = useState(false);
+  const down = () => {
+    setIsMinimized(true);
+  };
+  const up = () => {
+    setIsMinimized(false);
+  };
+  //------dragMove------
+  const dragMove = useDragMove();
 
-    return (
-        <windowContext.Provider
-            value={{
-                overlay: {
-                    display: overlayState,
-                    modalContent: overlayContent,
-                    hide,
-                    show,
-                    modal,
-                },
-                dragMove,
-                minimize: {
-                    isMinimized,
-                    down,
-                    up,
-                },
-            }}>
-            <ParamsCtxProvider>
-                <RoundCtxProvider>
-                    <BoardCtxProvider>
-                        <UserCtxProvider>{props.children}</UserCtxProvider>
-                    </BoardCtxProvider>
-                </RoundCtxProvider>
-            </ParamsCtxProvider>
-        </windowContext.Provider>
-    );
+  return (
+    <windowContext.Provider
+      value={{
+        overlay: {
+          display: overlayState,
+          modalContent: overlayContent,
+          hide,
+          show,
+          modal,
+        },
+        dragMove,
+        minimize: {
+          isMinimized,
+          down,
+          up,
+        },
+      }}>
+      {props.children}
+    </windowContext.Provider>
+  );
 };

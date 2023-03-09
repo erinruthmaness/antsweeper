@@ -2,8 +2,8 @@ import Window from "Components/Window/Window";
 import Footer from "Components/Background/Footer/Footer";
 
 import { useContext } from "react";
-import paramsContext from "utils/store/paramsContext";
-import userContext from "utils/store/userContext";
+import { paramsContext, userContext } from "utils/store";
+
 import "style/levels.css";
 
 import styles from "./App.module.css";
