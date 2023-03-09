@@ -1,0 +1,17 @@
+.overlay {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(134, 138, 142, 0.4);
+}
+
+.overlay_hide {
+  display: none;
+}

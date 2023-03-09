@@ -1,3 +1,7 @@
-/* .bg {
-  text-align: center;
-} */
+.window_container {
+  margin: auto;
+  margin-top: 2em;
+  width: fit-content;
+  position: relative;
+  z-index: 2;
+}

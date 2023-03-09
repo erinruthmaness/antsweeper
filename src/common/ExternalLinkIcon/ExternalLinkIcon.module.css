@@ -1,0 +1,40 @@
+.externalLink__outer {
+    display: inline-block;
+    font-weight: bolder;
+    height: .9em;
+    width: .9em;
+    margin: 0 5px;
+    position: relative;
+    z-index: 5;
+}
+
+.externalLink__inner {
+    margin: 15% 0 0 15%;
+    border: 2px solid;
+    min-width: 70%;
+    min-height: 70%;
+}
+
+.externalLink__inner::before {
+    content: '';
+    background-color: white;
+    height: .8em;
+    width: .8em;
+    position: absolute;
+    top: 0;
+    right: -.28em;
+    z-index: 6;
+}
+
+li:hover .externalLink__inner::before, li:focus .externalLink__inner::before {
+    background-color: var(--w98-bluescreen-blue);
+}
+
+.externalLink__inner::after {
+    content: "\1F86D";
+    font-size: .9em;
+    position: absolute;
+    top: -.32em;
+    right: -.32em;
+    z-index: 7;
+}

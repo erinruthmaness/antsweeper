@@ -1,6 +1,11 @@
-const initialRound = {
-  ready: false,
-  started: false,
+import { defaultUserStats } from "./userStats";
+
+const defaultRoundState = {
+    ready: false,
+    started: false,
+    antList: [],
+    time: undefined,
+    userStats: defaultUserStats,
 };
 
-export default initialRound;
+export default defaultRoundState;
