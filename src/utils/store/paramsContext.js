@@ -1,29 +1,38 @@
 import React, { useState } from "react";
-import { defaultParams, default as getParams } from "./initialState/params";
+import levels from "./initialState/paramLevels";
+import { RoundCtxProvider } from "./roundContext";
+import { OverlayCtxProvider } from "./overlayContext";
 
 //for IDE completion
 const defaultContext = {
-    ...defaultParams,
-    setParameters: (string) => {},
+  rows: null,
+  cols: null,
+  ants: null,
+  setParameters: (params) => {},
 };
-const paramsContext = React.createContext(defaultContext);
-export default paramsContext;
+const paramContext = React.createContext(defaultContext);
+export default paramContext;
 
-export const ParamsCtxProvider = (props) => {
-    const [params, setParams] = useState(defaultParams);
+export const ParamCtxProvider = (props) => {
+  const [params, setParams] = useState(levels.beginner);
 
-    const setParameters = (paramString) => {
-        setParams(getParams(paramString));
-        console.log("PARAMS CONTEXT changing params");
-    };
+  const setParameters = (newParam) => {
+    setParams(newParam);
+    console.log("PARAMS CONTEXT changing params");
+  };
 
-    return (
-        <paramsContext.Provider
-            value={{
-                ...params,
-                setParameters,
-            }}>
-            {props.children}
-        </paramsContext.Provider>
-    );
+  return (
+    <paramContext.Provider
+      value={{
+        ...params,
+        setParameters: setParameters,
+      }}
+    >
+      <RoundCtxProvider>
+        <OverlayCtxProvider>
+        {props.children}
+        </OverlayCtxProvider>
+      </RoundCtxProvider>
+    </paramContext.Provider>
+  );
 };

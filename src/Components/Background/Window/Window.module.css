@@ -1,0 +1,9 @@
+.window {
+    margin: 2em auto;
+    width: fit-content;
+    border: var(--w98-border);
+    border-color: var(--w98-border-color);
+    box-shadow: inset 1px 1px white;
+    background-color: var(--w98-light-gray);
+    padding: var(--w98-card-padding);
+}

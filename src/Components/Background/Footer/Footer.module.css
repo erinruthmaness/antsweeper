@@ -16,7 +16,6 @@
 .bg__footer button {
     margin: 2px;
     font-family: var(--w98-font-family-default);
-    cursor: pointer;
 }
 
 .startButton {
@@ -34,7 +33,7 @@
     height: .9em;
 }
 
-.gameWindowButton {
+.gamewindowButton {
     font-weight: bold;
     font-size: 1.25em;
     letter-spacing: var(--w98-letterspace-close);
