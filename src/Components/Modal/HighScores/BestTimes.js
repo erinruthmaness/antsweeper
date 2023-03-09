@@ -1,15 +1,16 @@
-import { useGetScores } from "api";
+import { useContext } from "react";
 import { LEVELS } from "utils/strings";
 import { capitalizeFirstLetter } from "utils/logic/helpers";
+import { paramsContext } from "utils/store";
 
-const HighScores = () => {
-  const { loadedScores, scores } = useGetScores();
+const BestTimes = () => {
+  const { loadedScores, scores } = useContext(paramsContext);
 
   const makeListContents = (LEVEL_STRING) => {
     if (!loadedScores) {
       return <li>Loading...</li>;
     } else if (scores[LEVEL_STRING].length === 0) {
-      return <li>No high scores yet for this level!</li>;
+      return <li>No scores yet for this level!</li>;
     } else {
       return scores[LEVEL_STRING].map((score) => (
         <li key={score.id}>
@@ -31,4 +32,4 @@ const HighScores = () => {
   );
 };
 
-export default HighScores;
+export default BestTimes;

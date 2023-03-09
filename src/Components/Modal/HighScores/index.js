@@ -1,1 +1,1 @@
-export { default } from "./HighScores.js";
+export { default } from "./BestTimes.js";
