@@ -1,5 +1,3 @@
-import { LEVELS as LEVEL_STRINGS } from "utils/strings";
-
 export const isProd = process.env.NODE_ENV && process.env.NODE_ENV === "prod";
 
 //the Fisher-Yates shuffle
@@ -13,27 +11,6 @@ export const shuffle = (array) => {
 
 export const assessDigit = (string, num) => {
   return string + "--" + num.toString();
-};
-
-export const levels = {
-  [LEVEL_STRINGS.BEGINNER]: {
-    rows: 8,
-    cols: 8,
-    ants: 10,
-    level: LEVEL_STRINGS.BEGINNER,
-  },
-  [LEVEL_STRINGS.INTERMEDIATE]: {
-    rows: 16,
-    cols: 16,
-    ants: 40,
-    level: LEVEL_STRINGS.INTERMEDIATE,
-  },
-  [LEVEL_STRINGS.EXPERT]: {
-    rows: 24,
-    cols: 24,
-    ants: 99,
-    level: LEVEL_STRINGS.EXPERT,
-  },
 };
 
 export const capitalizeFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1)}`;

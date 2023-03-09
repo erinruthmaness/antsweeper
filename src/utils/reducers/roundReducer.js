@@ -1,7 +1,11 @@
 import { isProd } from "utils/logic/helpers";
+import { initialUserStats } from "utils/store/initialState/userStats";
+
 //probably have to do this logic outside of the reducer where the save hook can.. save it
-const changeScore = (userStats, level, didWin) => {
-  const currentStats = { ...userStats[level] };
+const changeScore = (userStats = {}, level, didWin) => {
+  const currentStats = userStats.hasOwnProperty(level)
+    ? { ...userStats[level] }
+    : initialUserStats[level];
   currentStats.total++;
   if (didWin) {
     currentStats.wins++;

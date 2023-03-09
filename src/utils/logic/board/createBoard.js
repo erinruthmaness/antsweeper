@@ -1,5 +1,5 @@
 import { shuffle } from "utils/logic/helpers";
-import buildSquare from "utils/store/initialState/square";
+import buildSquare from "utils/logic/buildSquare";
 
 //make an array of arrays of "squares"
 export const buildBoard = (rows, cols) => {

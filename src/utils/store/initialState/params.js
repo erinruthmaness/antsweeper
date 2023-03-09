@@ -1,14 +1,29 @@
-import PropTypes from "prop-types";
-import { levels } from "utils/logic/helpers";
+import { LEVELS as LEVEL_STRINGS } from "utils/strings";
 
-const getParams = (levelString) => {
-    return { ...levels[levelString] };
+export const allParamsByLevel = {
+  [LEVEL_STRINGS.BEGINNER]: {
+    rows: 8,
+    cols: 8,
+    ants: 10,
+    level: LEVEL_STRINGS.BEGINNER,
+    bestTime: undefined,
+  },
+  [LEVEL_STRINGS.INTERMEDIATE]: {
+    rows: 16,
+    cols: 16,
+    ants: 40,
+    level: LEVEL_STRINGS.INTERMEDIATE,
+    bestTime: undefined,
+  },
+  [LEVEL_STRINGS.EXPERT]: {
+    rows: 24,
+    cols: 24,
+    ants: 99,
+    level: LEVEL_STRINGS.EXPERT,
+    bestTime: undefined,
+  },
 };
 
-getParams.propTypes = {
-    level: PropTypes.oneOf(["beginner", "intermediate", "expert"]),
-};
+export const INITIAL_LEVEL = LEVEL_STRINGS.BEGINNER;
 
-export default getParams;
-
-export const defaultParams = getParams("beginner");
+export const initialLevelParams = allParamsByLevel[INITIAL_LEVEL];
