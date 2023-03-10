@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useCallback } from "react";
+import React, { useReducer, useContext, useCallback, useEffect } from "react";
 import { paramsContext, roundContext } from ".";
 import { initialState } from "./initialState";
 import { reducers } from "utils/reducers";
@@ -14,9 +14,11 @@ const defaultContext = {
   clear: () => {},
   update: (y, x, clickType) => {},
 };
-const boardContext = React.createContext(defaultContext);
 
-const BoardCtxProvider = ({ children }) => {
+const boardContext = React.createContext(defaultContext);
+export default boardContext;
+
+export const BoardCtxProvider = ({ children }) => {
   const paramCtx = useContext(paramsContext);
   const roundCtx = useContext(roundContext);
   const [boardState, dispatchBoard] = useReducer(reducers.board, initialState.board);
@@ -50,21 +52,19 @@ const BoardCtxProvider = ({ children }) => {
     [boardState, roundCtx]
   );
 
+  const wasBoardGenerated = boardState.board.length > 0;
+  const didLevelChange = wasBoardGenerated && boardState.board.length !== paramCtx.rows;
+  const didRoundChange = wasBoardGenerated && !roundCtx.ready && !roundCtx.started;
+
+  useEffect(() => {
+    if (didLevelChange || didRoundChange) {
+      reset();
+    }
+  }, [didLevelChange, didRoundChange, reset]);
+
   return (
     <boardContext.Provider value={{ ...boardState, setFace, reset, clear, update }}>
       {children}
     </boardContext.Provider>
   );
 };
-
-const useGameContext = () => {
-  const boardCtx = React.useContext(boardContext);
-  const roundCtx = React.useContext(roundContext);
-  if (!boardCtx) {
-    throw new Error("Cannot use 'useBoard' outside of a BoardCtxProvider.");
-  }
-
-  return { boardCtx, roundCtx };
-};
-
-export { BoardCtxProvider, useGameContext };

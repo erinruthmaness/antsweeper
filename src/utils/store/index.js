@@ -2,7 +2,7 @@ import windowContext, { WindowCtxProvider } from "./windowContext";
 import paramsContext, { ParamsCtxProvider } from "./paramsContext";
 import roundContext, { RoundCtxProvider } from "./roundContext";
 import userContext, { UserCtxProvider } from "./userContext";
-import { useGameContext, BoardCtxProvider } from "./boardContext";
+import boardContext, { BoardCtxProvider } from "./boardContext";
 
 const Providers = {
   Window: WindowCtxProvider,
@@ -13,7 +13,7 @@ const Providers = {
 }
 
 export {
-  useGameContext,
+  boardContext,
   paramsContext,
   roundContext,
   userContext,

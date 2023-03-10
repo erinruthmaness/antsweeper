@@ -1,6 +1,4 @@
-import { useCallback, useContext, useEffect } from "react";
-
-import { paramsContext, useGameContext } from "utils/store";
+import { useGameContext } from "utils/hooks";
 
 import Controls from "../Controls";
 import Square from "../Square";
@@ -8,50 +6,22 @@ import Square from "../Square";
 import styles from "./Board.module.css";
 
 const Board = () => {
-  const paramCtx = useContext(paramsContext);
-    const { boardCtx, roundCtx } = useGameContext();
-
-  const restartRound = useCallback(() => {
-    boardCtx.reset();
-  }, [boardCtx]);
-  const handleSquareClick = useCallback(
-    (moveTypeAndLocation) => {
-      boardCtx.update(moveTypeAndLocation);
-    },
-    [boardCtx]
-  );
-
-  useEffect(() => {
-    // FIX LATER - without "didLevelChange" the squares don't reset until a new game is launched
-    // but "didLevelChange" was checking for the level name copied to board context, which wasn't getting updated
-    // and that caused an infinite loop since "didLevelChange" was always "true" after level change
-    // const didLevelChange = paramCtx.level !== boardCtx.level;
-    const isBoardReady = !(!roundCtx.ready && !roundCtx.started && boardCtx.board.length > 0);
-
-    if (/*didLevelChange ||*/ !isBoardReady) {
-      restartRound();
-    }
-  }, [
-    /*paramCtx.level,*/ /*boardCtx.level,*/ boardCtx.board.length,
-    roundCtx.ready,
-    roundCtx.started,
-    restartRound,
-  ]);
+  const { paramsCtx, boardCtx, roundCtx } = useGameContext();
 
   return (
     <article className={styles.gameWrapper}>
       <Controls
-        startGame={restartRound}
+        startGame={boardCtx.reset}
         inProgress={roundCtx.ready}
         flags={boardCtx.flags}
-        maxFlags={paramCtx.ants}
+        maxFlags={paramsCtx.ants}
         firstClick={roundCtx.started}
       />
       <div
         id="game-board"
         role="grid"
-        aria-colcount={paramCtx.cols}
-        aria-rowcount={paramCtx.rows}
+        aria-colcount={paramsCtx.cols}
+        aria-rowcount={paramsCtx.rows}
         className={styles.boardWrapper}>
         {boardCtx.board
           ? boardCtx.board.map((row, index) => (
@@ -60,8 +30,6 @@ const Board = () => {
                   <Square
                     key={square.key}
                     sq={square}
-                    onClick={handleSquareClick}
-                    gameOver={!roundCtx.ready}
                   />
                 ))}
               </div>

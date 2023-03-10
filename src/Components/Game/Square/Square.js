@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-import { useGameContext } from "utils/store/boardContext";
 import PropTypes from "prop-types";
+import { useGameContext } from "utils/hooks";
 import { assessDigit } from "utils/logic/helpers";
 import { getSqResponse, sqState } from "./utils";
 import styles from "./Square.module.css";
 
-const Square = ({ gameOver, sq }) => {
+const Square = ({ sq }) => {
     const countRef = useRef();
     const { boardCtx, roundCtx } = useGameContext();
 
@@ -28,7 +28,7 @@ const Square = ({ gameOver, sq }) => {
     }, [revealed, flagged, ant, display, setSqValue]);
 
     const preventUnnecessaryParse = () => {
-        if (gameOver) {
+        if (!roundCtx.ready) {
             sqState.reset();
             return true;
         } else if (revealed) {
@@ -135,7 +135,6 @@ function getSquareContents(squarePropsDisplay) {
 }
 
 Square.propTypes = {
-    gameOver: PropTypes.bool,
     id: PropTypes.string,
     sq: PropTypes.shape({
         ant: PropTypes.bool,

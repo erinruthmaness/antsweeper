@@ -3,5 +3,7 @@ export const initialRoundState = {
   ready: false,
   started: false,
   antList: [],
-  time: undefined,
+  time: 0,
 };
+
+export const initialTimerState = "off";
