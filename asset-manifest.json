@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/antsweeper/static/css/main.61dd689d.css",
-    "main.js": "/antsweeper/static/js/main.8195a889.js",
+    "main.css": "/antsweeper/static/css/main.f7d3f3ef.css",
+    "main.js": "/antsweeper/static/js/main.5004fa49.js",
     "static/media/win98Logo.png": "/antsweeper/static/media/win98Logo.c4af9ed57dd0ae94bca2.png",
     "index.html": "/antsweeper/index.html",
-    "main.61dd689d.css.map": "/antsweeper/static/css/main.61dd689d.css.map",
-    "main.8195a889.js.map": "/antsweeper/static/js/main.8195a889.js.map"
+    "main.f7d3f3ef.css.map": "/antsweeper/static/css/main.f7d3f3ef.css.map",
+    "main.5004fa49.js.map": "/antsweeper/static/js/main.5004fa49.js.map"
   },
   "entrypoints": [
-    "static/css/main.61dd689d.css",
-    "static/js/main.8195a889.js"
+    "static/css/main.f7d3f3ef.css",
+    "static/js/main.5004fa49.js"
   ]
 }
